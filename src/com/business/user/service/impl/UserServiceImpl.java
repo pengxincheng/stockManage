@@ -37,5 +37,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(PasswordUtil.EncoderByMd5(user.getPassword()));
         List<User> users = userDao.getAllUser(user);
         return users.size() > 0 ? true : false;
+        //测试git
     }
 }
