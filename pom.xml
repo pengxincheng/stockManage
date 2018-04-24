@@ -258,7 +258,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>testWebservice</finalName>
+        <finalName>stockManage</finalName>
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
         <resources>
