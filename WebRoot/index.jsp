@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--新增条-->
 <div class="ths-toolbar">
     <div class="row">
-        <div class="col-sm-4 hidden-xs">欢迎您，${sessionScope.currentUser.name}</div>
+        <div class="col-sm-4 hidden-xs">欢迎您，${sessionScope.currentUser.userAlias}</div>
         <div class="col-xs-12 col-sm-8 ">
             <ul class=" pull-right" data-level="top">
                 <!-- <li><i class="ace-icon fa fa-file-o grey bigger-100" title="待办事项"></i><span class="badge badge-warning">99</span></li>
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a href="#" class="navbar-brand navbar-brand-line no-padding">
             <small>
                 <i class="width_34"><img src="assets/images/haut.png"></i>
-                <span>学生宿舍管理系统</span>
+                <span>库存管理系统</span>
             </small>
         </a>
         <!-- /section:basics/navbar.toggle -->
@@ -100,18 +100,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- #section:basics/sidebar -->
     <div id="sidebar" class="sidebar responsive  sidebar-fixed" >
         <ul class="nav nav-list">
-        	<c:if test="${sessionScope.currentUser.roleId eq 3}">
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-th-large"></i>
-                    <span class="menu-text">学生</span>
+                    <span class="menu-text">基础信息管理</span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <ul class="submenu">
                     <li class="active">
-                        <a href="findAllNotifies.do" target="main">
+                        <a href="pages/role/roleList.jsp" target="main">
                             <i class="menu-icon fa fa-laptop"></i>
-                            通知公告
+                            角色管理
                             <!-- <span class="badge badge-warning">5</span> -->
                         </a>
                         <b class="arrow"></b>
@@ -148,8 +147,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>				
                 </ul>
             </li>
-            </c:if>
-            <c:if test="${sessionScope.currentUser.roleId eq 2}">
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
@@ -274,8 +271,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                 </ul>
             </li>
-            </c:if>
-            <c:if test="${sessionScope.currentUser.roleId eq 1}">
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
@@ -347,7 +342,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                 </ul>
             </li>
-            </c:if>
         </ul><!-- /.nav-list -->
 
         <!-- #section:basics/sidebar.layout.minimize -->

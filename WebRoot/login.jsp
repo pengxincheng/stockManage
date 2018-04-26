@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#btnLogin").on(ace.click_event,function (e) {
         	var param =  $("#login").serialize()
         	$.post("login",param,function(data){
-        		if(data.result == 'SUCCESS'){
+        		if(data.resultJson.result == 'SUCCESS'){
         			window.location.href="index.jsp";
         		}
         		else{

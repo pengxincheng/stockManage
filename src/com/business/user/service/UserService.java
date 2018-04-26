@@ -28,5 +28,5 @@ public interface UserService {
      * @param user
      * @return
      */
-    boolean checkLogin(User user);
+    User checkLogin(User user);
 }

@@ -19,11 +19,11 @@ public class RoleDaoImpl extends BasicDaoImpl<Role> implements RoleDao {
             FoHQLQuery query = new FoHQLQuery();
             String hql = "from Role r where 1=1 ";
             if (StringUtils.isNotBlank(role.getRoleCode())) {
-                hql += "r.roleCode = :roleCode ";
+                hql += "and r.roleCode = :roleCode ";
                 query.setString("roleCode", role.getRoleCode());
             }
             if (StringUtils.isNotBlank(role.getRoleName())) {
-                hql += "r.roleName like :roleName ";
+                hql += " and r.roleName like :roleName ";
                 query.setString("roleName", "%" + role.getRoleName() + "%");
             }
             query.setHQL(hql);
