@@ -102,8 +102,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <table id="example" class="table table-striped  table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th class="align-center">角色名称</th>
-                                                <th class="align-center">角色编号</th>
+                                                <th class="align-center">仓库名称</th>
+                                                <th class="align-center">地址</th>
+                                                <th class="align-center">描述</th>
                                                 <th class="align-center" >创建人</th>
                                                 <th class="align-center" >创建时间</th>
                                                 <th class="align-center hidden-xs"><i class="ace-icon fa fa-wrench"></i>
@@ -149,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../../assets/js/src/ace.js"></script>
 
 <!-- 自己写的JS，请放在这里 -->
-<script src="../../js/role.js"></script>
+<script src="../../js/warehouse.js"></script>
 <script type="text/javascript">
 	initTable();
 	jQuery(function ($) {

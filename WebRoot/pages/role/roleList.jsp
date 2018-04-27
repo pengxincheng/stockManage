@@ -57,7 +57,7 @@
         <div class="main-content-inner fixed-page-header fixed-40">
             <div id="breadcrumbs" class="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li class="active"><i class="fa fa-arrow-right"></i>宿舍区列表</li>
+                    <li class="active"><i class="fa fa-arrow-right"></i>角色列表</li>
                 </ul><!-- /.breadcrumb -->
             </div>
         </div>

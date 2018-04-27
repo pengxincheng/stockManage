@@ -1,7 +1,7 @@
 function initTable() {
 
     $.ajax({
-        url: '../../role/list',// 跳转到 action
+        url: '../../warehouse/list',// 跳转到 action
 
         data: {
             "areaName": $("#areaName").val()
@@ -15,7 +15,7 @@ function initTable() {
                 $('#example tbody').html("");
                 $('#example').DataTable(
                     {
-                        destroy: true,   //是否允许破坏表
+                        destroy: false,   //是否允许破坏表
                         77: 6,// 每页显示多少条记录
                         searching: false,
                         lengthChange: true,
@@ -26,11 +26,15 @@ function initTable() {
                         dom: "t<'ths-page'fl><'ths-pager'p>",
                         columns: [
                             {
-                                "data": "roleName",
+                                "data": "warehouseName",
                                 "class": "align-center"
                             },
                             {
-                                "data": "roleCode",
+                                "data": "address",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "desc",
                                 "class": "align-center"
                             },
                             {
@@ -47,16 +51,8 @@ function initTable() {
                             }],
                         columnDefs: [// 设置列的属性，此处设置第一列不排序
                             {
-                                "bSortable": false,
-                                "aTargets": [0]
-                            },
-                            {
-                                "class": "tn",
-                                "targets": [0]
-                            },
-                            {
                                 // 定义操作列,######以下是重点########
-                                "targets": 4,// 操作按钮目标列
+                                "targets": 6,// 操作按钮目标列
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {

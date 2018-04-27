@@ -31,7 +31,7 @@ public class RoleAction extends BasicAction {
     @Autowired
     private RoleService roleService;
 
-    @Action(value = "/list", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    @Action(value = "list", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String getAllUser() {
         try {
             if (null == role) {
@@ -39,7 +39,6 @@ public class RoleAction extends BasicAction {
             }
             List<Role> roles = roleService.getAllRoles(role);
             response = Response.ok(JSONUtils.toJSONInclude(roles, "createUserId", "createTime", "role", "roleCode", "roleId", "roleName"));
-            System.out.println(response);
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);
@@ -47,7 +46,7 @@ public class RoleAction extends BasicAction {
         return SUCCESS;
     }
 
-    @Action(value = "/add", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    @Action(value = "add", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String addRole() {
         try {
             User currentUser = (User)ServletActionContext.getRequest().getSession().getAttribute("currentUser");

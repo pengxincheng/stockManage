@@ -43,14 +43,7 @@ function initTable() {
                                 "class": "align-center"
                             }],
                         columnDefs: [// 设置列的属性，此处设置第一列不排序
-                            {
-                                "bSortable": false,
-                                "aTargets": [0]
-                            },
-                            {
-                                "class": "tn",
-                                "targets": [0]
-                            }],
+                           ],
 
                         /*
                          * scrollX:500, fixedColumns: {

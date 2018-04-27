@@ -1,8 +1,9 @@
-package com.business.stock;
+package com.business.stock.po;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * Created by pxc on 2018/4/25.
@@ -19,6 +20,10 @@ public class Stock {
     private Integer outCount;
     private String isWaring;
 
+    @Id
+    @Column(name = "stock_id")
+    @GeneratedValue(generator = "StockGenerator")
+    @GenericGenerator(name = "StockGenerator", strategy = "uuid")
     public String getId() {
         return id;
     }
@@ -27,6 +32,7 @@ public class Stock {
         this.id = id;
     }
 
+    @Column(name = "product_id")
     public String getProductId() {
         return productId;
     }
@@ -35,6 +41,7 @@ public class Stock {
         this.productId = productId;
     }
 
+    @Column(name = "warehouse_id")
     public String getWareHouseId() {
         return wareHouseId;
     }
@@ -43,6 +50,7 @@ public class Stock {
         this.wareHouseId = wareHouseId;
     }
 
+    @Column(name = "in_count")
     public Integer getInCount() {
         return inCount;
     }
@@ -51,6 +59,7 @@ public class Stock {
         this.inCount = inCount;
     }
 
+    @Column(name = "out_count")
     public Integer getOutCount() {
         return outCount;
     }
@@ -59,6 +68,7 @@ public class Stock {
         this.outCount = outCount;
     }
 
+    @Column(name = "is_waring")
     public String getIsWaring() {
         return isWaring;
     }

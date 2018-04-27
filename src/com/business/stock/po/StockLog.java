@@ -1,12 +1,17 @@
-package com.business.stock;
+package com.business.stock.po;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * Created by pxc on 2018/4/25.
- *
- *库存日志 记录每次入库出库信息
+ * <p>
+ * 库存日志 记录每次入库出库信息
  */
+@Entity
+@Table(name = "tab_stock_log")
 public class StockLog {
 
     private String id;
@@ -22,6 +27,11 @@ public class StockLog {
     private BigDecimal totalMoney;   //交易总额
     private String remark;
 
+
+    @Id
+    @Column(name = "stock_log_id")
+    @GeneratedValue(generator = "StockGenerator")
+    @GenericGenerator(name = "StockGenerator", strategy = "uuid")
     public String getId() {
         return id;
     }
@@ -30,6 +40,7 @@ public class StockLog {
         this.id = id;
     }
 
+    @Column(name = "stock_id")
     public String getStockId() {
         return stockId;
     }
@@ -38,6 +49,7 @@ public class StockLog {
         this.stockId = stockId;
     }
 
+    @Column(name = "product_id")
     public String getProductId() {
         return productId;
     }
@@ -46,6 +58,7 @@ public class StockLog {
         this.productId = productId;
     }
 
+    @Column(name = "warehouse_id")
     public String getWareHouseId() {
         return wareHouseId;
     }
@@ -54,6 +67,7 @@ public class StockLog {
         this.wareHouseId = wareHouseId;
     }
 
+    @Column(name = "in_count")
     public Integer getInCount() {
         return inCount;
     }
@@ -62,6 +76,7 @@ public class StockLog {
         this.inCount = inCount;
     }
 
+    @Column(name = "out_count")
     public Integer getOutCount() {
         return outCount;
     }
@@ -69,7 +84,7 @@ public class StockLog {
     public void setOutCount(Integer outCount) {
         this.outCount = outCount;
     }
-
+    @Column(name = "is_waring")
     public String getIsWaring() {
         return isWaring;
     }
@@ -78,6 +93,7 @@ public class StockLog {
         this.isWaring = isWaring;
     }
 
+    @Column(name = "user_id")
     public String getUserId() {
         return userId;
     }
@@ -86,6 +102,7 @@ public class StockLog {
         this.userId = userId;
     }
 
+    @Column(name = "create_time")
     public String getCreateTime() {
         return createTime;
     }
@@ -94,6 +111,7 @@ public class StockLog {
         this.createTime = createTime;
     }
 
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -102,6 +120,7 @@ public class StockLog {
         this.type = type;
     }
 
+    @Column(name = "total_money")
     public BigDecimal getTotalMoney() {
         return totalMoney;
     }
@@ -110,6 +129,7 @@ public class StockLog {
         this.totalMoney = totalMoney;
     }
 
+    @Column(name = "remark")
     public String getRemark() {
         return remark;
     }
