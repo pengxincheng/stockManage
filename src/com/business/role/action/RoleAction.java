@@ -50,6 +50,7 @@ public class RoleAction extends BasicAction {
     public String addRole() {
         try {
             roleService.saveRole(role);
+            response = Response.ok();
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

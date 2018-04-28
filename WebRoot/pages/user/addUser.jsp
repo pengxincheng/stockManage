@@ -69,7 +69,7 @@
                     <div class=" col-xs-12">
                         <form class="form-horizontal" role="form" id="role" name="role" action="../../user/add"
                               method="post">
-                            <input type="hidden" id="id" name="user.id">
+                            <input type="hidden" id="userId" name="user.userId">
                             <div class="form-group">
                                 <label class="col-sm-1 control-label no-padding-right" for="userAlias">用户姓名</label>
                                 <div class="col-sm-3">
@@ -191,40 +191,59 @@
             //console.log("validate begin..");
             //console.log($('#addNotify').validationEngine('validate'));
             if ($('#role').validationEngine('validate')) {
-                alert("操作成功");
-                $('#role').submit();
+                var params = $('#role').serialize();
+                $.post("../../user/add", params, function (data) {
+                    if (data.resultJson.result == 'SUCCESS') {
+                        alert("操作成功！");
+                        location.href = 'userList.jsp'
+                    } else {
+                        alert("操作失败!");
+                    }
+                });
             }
         });
         $("#btnReturn").on(ace.click_event, function () {
             window.history.go(-1);
         });
 
-        if (getUrlParam("id")) {
-            var id = getUrlParam("id");
-            $.get("../../warehouse/getById", {id: id}, function (data) {
-                var json = data.resultJson.content;
-                if (json) {
-                    Object.keys(json).map(function (key) {
-                        $.each(document.getElementById("role"), function () {
-                            if (key == $(this).attr("id")) {
-                                $(this).val(json[key]);
-                            }
-                        });
+        if (getUrlParam("userId")) {
+            var id = getUrlParam("userId");
+            $.get("../../role/list",{},function (data) {
+                if (data.resultJson.result == 'SUCCESS') {
+                    var json =  data.resultJson.content;
+                    $.each(json, function (i, item) {
+                        jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
                     });
                 }
+
+                $.get("../../user/getById", {id: id}, function (data) {
+                    var json = data.resultJson.content;
+                    if (json) {
+                        Object.keys(json).map(function (key) {
+                            $.each(document.getElementById("role"), function () {
+                                if (key == $(this).attr("id")) {
+                                    $(this).val(json[key]);
+                                }
+                            });
+                        });
+                    }
+                })
+
+            })
+
+        }else{
+            $.get("../../role/list",{},function (data) {
+                if (data.resultJson.result == 'SUCCESS') {
+                    var json =  data.resultJson.content;
+                    $.each(json, function (i, item) {
+                        jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
+                    });
+                }
+
             })
         }
 
-        $.get("../../role/list",{},function (data) {
-            if (data.resultJson.result == 'SUCCESS') {
-                var json =  data.resultJson.content;
-                $.each(json, function (i, item) {
-                    jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
-                });
-            }
 
-
-        })
 
     });
 </script>

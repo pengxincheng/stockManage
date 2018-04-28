@@ -18,7 +18,7 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
     @Override
     public List<User> getAllUser(User user) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = "from User u left join fetch u.role r where 1=1 ";
+        String hql = "from User u left join fetch u.role r where 1=1 and u.isDelete = 'F' ";
         hql += this.getConditions(query, user);
         query.setHQL(hql);
         return execFoQuery(query);

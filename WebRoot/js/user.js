@@ -89,11 +89,11 @@ function initTable() {
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {
-                                    var id = row.id;
-                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addWarehouse.jsp?id="
+                                    var id = row.userId;
+                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addUser.jsp?userId="
                                         + id
-                                        + "'><i class='ace-icon fa fa-edit'></i></a>"
-                                    html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths'  title='删除' onclick='delArea(" + id + ")'><i class='ace-icon fa fa-trash-o'></i></button>"
+                                        + "'><i class='ace-icon fa fa-edit'></i></a>";
+                                    html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths' title='删除' name='" + id + "' onclick='delArea(this)'><i class='ace-icon fa fa-trash-o'></i></button>"
                                     return html;
                                 }
                             }],
@@ -128,10 +128,17 @@ function initTable() {
         }
     });
 }
-function delArea(id) {
+function delArea(obj) {
+    var id = obj.name;
     if (confirm("确定删除吗？")) {
-        location.href = "delArea.do?id=" + id;
-        alert("操作成功！");
+        $.post("../../user/delete", {"id": id}, function (data) {
+            if (data.resultJson.result = 'SUCCESS') {
+                alert("操作成功！");
+                location.href = "userList.jsp";
+            }
+        })
+    }else {
+        alert("操作失败！");
     }
 }
 

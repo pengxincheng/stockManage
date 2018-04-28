@@ -5,6 +5,7 @@ import com.business.user.service.UserService;
 import com.sysBasic.action.BasicAction;
 import com.utils.JSONUtils;
 import com.utils.Response;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -61,18 +62,51 @@ public class UserAction extends BasicAction {
     }
 
 
-    @Action(value = "add", results = {@Result(name = "success",location = "userList.jsp", params = {"root", "response"})})
+    @Action(value = "add", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String addUser() {
         try {
-            userService.saveUser(user);
+            if (StringUtils.isNotBlank(user.getUserId())) {
+                userService.updateUser(user);
+            } else {
+                userService.saveUser(user);
+            }
+            response = Response.ok();
         } catch (Exception e) {
+            response = Response.error();
             logger.error(e.getMessage(), e);
         }
         return SUCCESS;
     }
 
+    @Action(value = "delete", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    public String delUser() {
+        try {
+            userService.delUser(id);
+            response = Response.ok();
+        } catch (Exception e) {
+            response = Response.error();
+            logger.error(e.getMessage(), e);
+        }
+        return SUCCESS;
+    }
+
+    @Action(value = "getById", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    public String getById() {
+        try {
+            if (null == id) {
+                response = Response.error();
+            }
+            User u = userService.getById(id);
+            response = Response.ok(JSONUtils.toJSONInclude(u, "userId", "userCode", "userName", "userAlias", "tel", "address", "remark", "createUserId", "createTime","roleId"));
+        } catch (Exception e) {
+            response = Response.error();
+            logger.error(e.getMessage(), e);
+        }
+        return SUCCESS;
+    }
 
     private User user;
+    private String id;
 
     public User getUser() {
         return user;
@@ -80,5 +114,13 @@ public class UserAction extends BasicAction {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

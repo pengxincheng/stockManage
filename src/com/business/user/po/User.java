@@ -28,6 +28,7 @@ public class User {
     private Date updateTime;        //修改时间
     private Role role;
     private UserType userType;    //用户类型
+    private String isDelete;     //是否删除  T删除 F未删除
 
     @Id
     @Column(name = "user_id")
@@ -167,5 +168,14 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    @Column(name = "is_delete")
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
     }
 }

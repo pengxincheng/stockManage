@@ -164,8 +164,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             //console.log("validate begin..");
             //console.log($('#addNotify').validationEngine('validate'));
             if ($('#role').validationEngine('validate')) {
-            	alert("操作成功");
-                $('#role').submit();
+                var params = $('#role').serialize();
+                $.post("../../role/add", params, function (data) {
+                    if (data.resultJson.result == 'SUCCESS') {
+                        alert("操作成功！");
+                        location.href = 'roleList.jsp'
+                    } else {
+                        alert("操作失败!");
+                    }
+                });
             }
         });
         $("#btnReturn").on(ace.click_event, function () {

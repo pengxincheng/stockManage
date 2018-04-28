@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
         User currentUser = (User)ServletActionContext.getRequest().getSession().getAttribute("currentUser");
         user.setCreateUserId(currentUser.getUserId());
         user.setCreateTime(new Date());
+        user.setIsDelete("F");
         //默认密码123456
         user.setPassword(PasswordUtil.EncoderByMd5("123456"));
         userDao.saveEntity(user);
@@ -40,5 +41,23 @@ public class UserServiceImpl implements UserService {
         user.setPassword(PasswordUtil.EncoderByMd5(user.getPassword()));
         List<User> users = userDao.getAllUser(user);
         return users.size() > 0 ? users.get(0) : null;
+    }
+
+    @Override
+    public User getById(String id) {
+        return userDao.getEntityById(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        User entity = userDao.getEntityById(user.getUserId());
+        userDao.updateEntity(entity);
+    }
+
+    @Override
+    public void delUser(String userId) {
+        User user = userDao.getEntityById(userId);
+        user.setIsDelete("T");
+        userDao.updateEntity(user);
     }
 }
