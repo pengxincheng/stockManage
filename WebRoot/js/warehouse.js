@@ -26,7 +26,18 @@ function initTable() {
                         dom: "t<'ths-page'fl><'ths-pager'p>",
                         columns: [
                             {
-                                "data": "warehouseName",
+
+                                "sClass": "align-center",
+                                "data": "id",
+                                "render": function (data, type, full, meta) {
+                                    return '<label class="pos-rel"><input type="checkbox" class="ace" class="ace"  value="'
+                                        + data
+                                        + '"/><span class="lbl"></span></label>'
+                                },
+
+                            },
+                            {
+                                "data": "name",
                                 "class": "align-center"
                             },
                             {
@@ -51,13 +62,21 @@ function initTable() {
                             }],
                         columnDefs: [// 设置列的属性，此处设置第一列不排序
                             {
+                                "bSortable": false,
+                                "aTargets": [0]
+                            },
+                            {
+                                "class": "tn",
+                                "targets": [0]
+                            },
+                            {
                                 // 定义操作列,######以下是重点########
                                 "targets": 6,// 操作按钮目标列
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {
                                     var id = row.id;
-                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='getAreaDetail.do?id="
+                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addWarehouse.jsp?id="
                                         + id
                                         + "'><i class='ace-icon fa fa-edit'></i></a>"
                                     html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths'  title='删除' onclick='delArea(" + id + ")'><i class='ace-icon fa fa-trash-o'></i></button>"

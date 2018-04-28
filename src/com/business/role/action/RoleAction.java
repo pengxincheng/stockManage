@@ -49,8 +49,6 @@ public class RoleAction extends BasicAction {
     @Action(value = "add", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String addRole() {
         try {
-            User currentUser = (User)ServletActionContext.getRequest().getSession().getAttribute("currentUser");
-            role.setCreateUserId(currentUser.getCreateUserId());
             roleService.saveRole(role);
         } catch (Exception e) {
             response = Response.error();

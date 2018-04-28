@@ -1,9 +1,9 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="main-content-inner fixed-page-header fixed-40">
             <div id="breadcrumbs" class="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li class="active"><i class="fa fa-arrow-right"></i>宿舍区列表</li>
+                    <li class="active"><i class="fa fa-arrow-right"></i>仓库列表</li>
                 </ul><!-- /.breadcrumb -->
             </div>
         </div>
@@ -69,26 +69,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
                             <div class="form-group">
                                 <label class="col-sm-1 control-label no-padding-right" for="areaName">
-                               	     名称
+                                    名称
                                 </label>
                                 <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="宿舍区名" id="areaName" name="areaName"/>
-                                       
+                                    <input type="text" class="form-control" placeholder="仓库名" id="areaName"
+                                           name="areaName"/>
+
                                 </div>
-                          		<div class="col-sm-5 col-lg-8 col-md-5 align-right">
+                                <div class="col-sm-5 col-lg-8 col-md-5 align-right">
                                     <div class="space-4 hidden-lg hidden-md hidden-sm"></div>
-                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch" onclick="initTable()">
+                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch"
+                                            onclick="initTable()">
                                         <i class="ace-icon fa fa-search"></i>
                                         搜索
-                                	</button>
-                            </div>
+                                    </button>
+                                </div>
 
                             </div>
-                            
-                           
+
+
                             <hr class="no-margin">
                             <div class="page-toolbar align-right list-toolbar">
-                                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd" data-ths-href="addRole.jsp">
+                                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd"
+                                        data-ths-href="addWarehouse.jsp">
                                     <i class="ace-icon fa fa-plus"></i>
                                     添加
                                 </button>
@@ -102,16 +105,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <table id="example" class="table table-striped  table-bordered table-hover">
                                             <thead>
                                             <tr>
+                                                <th class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace"/>
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
                                                 <th class="align-center">仓库名称</th>
                                                 <th class="align-center">地址</th>
                                                 <th class="align-center">描述</th>
-                                                <th class="align-center" >创建人</th>
-                                                <th class="align-center" >创建时间</th>
+                                                <th class="align-center">创建人</th>
+                                                <th class="align-center">创建时间</th>
                                                 <th class="align-center hidden-xs"><i class="ace-icon fa fa-wrench"></i>
-                                       				 操作
-                                    			</th>                                        
+                                                    操作
+                                                </th>
                                             </tr>
-                                            </thead>                                           
+                                            </thead>
                                         </table>
                                     </div>
                                 </div>
@@ -152,20 +161,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 自己写的JS，请放在这里 -->
 <script src="../../js/warehouse.js"></script>
 <script type="text/javascript">
-	initTable();
-	jQuery(function ($) {
+    initTable();
+    jQuery(function ($) {
         //为工具条添加点击事件
-        $(".page-toolbar>button").on(ace.click_event,function (e) {
-            if($(this).data("ths-href"))
-            {
+        $(".page-toolbar>button").on(ace.click_event, function (e) {
+            if ($(this).data("ths-href")) {
                 window.location.href = ($(this).data("ths-href"));
             }
         });
 
         //为表格操作列添加点击事件
-        $(".col-op-ths>button").on(ace.click_event,function(e){
-            if($(this).data("ths-href"))
-            {
+        $(".col-op-ths>button").on(ace.click_event, function (e) {
+            if ($(this).data("ths-href")) {
                 window.location.href = ($(this).data("ths-href"));
             }
         });
@@ -185,25 +192,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         //And for the first simple table, which doesn't have TableTools or dataTables
         //select/deselect all rows according to table header checkbox
         var active_class = 'active';
-        $('#example > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
+        $('#example > thead > tr > th input[type=checkbox]').eq(0).on('click', function () {
             var th_checked = this.checked;//checkbox inside "TH" table header
 
-            $(this).closest('table').find('tbody > tr').each(function(){
+            $(this).closest('table').find('tbody > tr').each(function () {
                 var row = this;
-                if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+                if (th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
                 else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
             });
         });
 
         //select/deselect a row when the checkbox is checked/unchecked
-        $('#example').on('click', 'td input[type=checkbox]' , function(){
+        $('#example').on('click', 'td input[type=checkbox]', function () {
             var $row = $(this).closest('tr');
 //            if($row.is('.detail-row ')) return;
-            if(this.checked) $row.addClass(active_class);
+            if (this.checked) $row.addClass(active_class);
             else $row.removeClass(active_class);
         });
     });
-    
+
 </script>
 </body>
 </html>

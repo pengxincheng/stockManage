@@ -11,6 +11,7 @@ public interface WarehouseService {
 
     /**
      * 列表
+     *
      * @param warehouse
      * @return
      */
@@ -18,13 +19,25 @@ public interface WarehouseService {
 
     /**
      * 保存
+     *
      * @param warehouse
      */
     void saveWarehouse(Warehouse warehouse);
 
     /**
      * 删除
+     *
      * @param id
      */
     void delWarehouse(String id);
+
+    /**
+     * 根据id查询
+     *
+     * @param id
+     * @return
+     */
+    Warehouse getById(String id);
+
+    void update(Warehouse warehouse);
 }

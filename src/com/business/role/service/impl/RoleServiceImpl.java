@@ -3,7 +3,9 @@ package com.business.role.service.impl;
 import com.business.role.dao.RoleDao;
 import com.business.role.po.Role;
 import com.business.role.service.RoleService;
+import com.business.user.po.User;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void saveRole(Role role) {
+        User currentUser = (User) ServletActionContext.getRequest().getSession().getAttribute("currentUser");
+        role.setCreateUserId(currentUser.getCreateUserId());
         role.setCreateTime(new Date());
         roleDao.saveEntity(role);
     }

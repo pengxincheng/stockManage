@@ -33,7 +33,7 @@ public class Warehouse {
         this.id = id;
     }
 
-    @Column(name = "name")
+    @Column(name = "warehouse_name")
     public String getName() {
         return name;
     }
@@ -51,7 +51,7 @@ public class Warehouse {
         this.address = address;
     }
 
-    @Column(name = "desc")
+    @Column(name = "warehouse_desc")
     public String getDesc() {
         return desc;
     }
