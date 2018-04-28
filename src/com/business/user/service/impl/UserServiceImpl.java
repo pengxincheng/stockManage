@@ -4,6 +4,7 @@ import com.business.user.dao.UserDao;
 import com.business.user.po.User;
 import com.business.user.service.UserService;
 import com.utils.PasswordUtil;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
+        User currentUser = (User)ServletActionContext.getRequest().getSession().getAttribute("currentUser");
+        user.setCreateUserId(currentUser.getUserId());
         user.setCreateTime(new Date());
         //默认密码123456
         user.setPassword(PasswordUtil.EncoderByMd5("123456"));

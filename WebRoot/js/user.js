@@ -1,10 +1,12 @@
 function initTable() {
 
     $.ajax({
-        url: '../../warehouse/list',// 跳转到 action
+        url: '../../user/list',// 跳转到 action
 
         data: {
-            "warehouse.name": $("#name").val()
+            "user.userName": $("#userName").val(),
+            "user.userAlias": $("#userAlias").val(),
+            "user.roleId": $("#roleId").val()
         },
         traditional: true,
         type: "post",
@@ -28,7 +30,7 @@ function initTable() {
                             {
 
                                 "sClass": "align-center",
-                                "data": "id",
+                                "data": "userId",
                                 "render": function (data, type, full, meta) {
                                     return '<label class="pos-rel"><input type="checkbox" class="ace" class="ace"  value="'
                                         + data
@@ -37,7 +39,19 @@ function initTable() {
 
                             },
                             {
-                                "data": "name",
+                                "data": "userAlias",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "userName",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "role.roleName",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "tel",
                                 "class": "align-center"
                             },
                             {
@@ -45,7 +59,7 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "desc",
+                                "data": "remark",
                                 "class": "align-center"
                             },
                             {
@@ -71,7 +85,7 @@ function initTable() {
                             },
                             {
                                 // 定义操作列,######以下是重点########
-                                "targets": 6,// 操作按钮目标列
+                                "targets": 9,// 操作按钮目标列
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {

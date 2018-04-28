@@ -2,7 +2,6 @@ package com.business.user.action;
 
 import com.business.user.po.User;
 import com.business.user.service.UserService;
-import com.opensymphony.xwork2.ActionContext;
 import com.sysBasic.action.BasicAction;
 import com.utils.JSONUtils;
 import com.utils.Response;
@@ -14,15 +13,12 @@ import org.apache.struts2.convention.annotation.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * Created by pxc on 2018/4/24.
  */
-@Namespace("/")
+@Namespace("/user")
 @ParentPackage("json-default")
 public class UserAction extends BasicAction {
 
@@ -31,7 +27,7 @@ public class UserAction extends BasicAction {
     @Autowired
     private UserService userService;
 
-    @Action(value = "/getAllUser", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    @Action(value = "list", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String getAllUser() {
         try {
             if (null == user) {
@@ -39,7 +35,6 @@ public class UserAction extends BasicAction {
             }
             List<User> users = userService.getAllUser(user);
             response = Response.ok(JSONUtils.toJSONInclude(users, "userId", "userCode", "userName", "userAlias", "tel", "address", "remark", "createUserId", "createTime", "role", "roleId", "roleName"));
-            System.out.println(response);
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);
@@ -47,10 +42,9 @@ public class UserAction extends BasicAction {
         return SUCCESS;
     }
 
-    @Action(value = "/login", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    @Action(value = "login", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String login() {
         try {
-           /* response = userService.checkLogin(user) ? Response.ok() : Response.error();*/
             User currentUser = userService.checkLogin(user);
             if (null != currentUser) {
                 ServletActionContext.getRequest().getSession().setAttribute("currentUser", currentUser);
@@ -61,6 +55,17 @@ public class UserAction extends BasicAction {
 
         } catch (Exception e) {
             response = Response.error();
+            logger.error(e.getMessage(), e);
+        }
+        return SUCCESS;
+    }
+
+
+    @Action(value = "add", results = {@Result(name = "success",location = "userList.jsp", params = {"root", "response"})})
+    public String addUser() {
+        try {
+            userService.saveUser(user);
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
         return SUCCESS;

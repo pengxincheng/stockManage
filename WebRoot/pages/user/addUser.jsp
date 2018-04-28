@@ -67,28 +67,46 @@
                 <div class="space-4"></div>
                 <div class="row">
                     <div class=" col-xs-12">
-                        <form class="form-horizontal" role="form" id="role" name="role" action="../../warehouse/add"
+                        <form class="form-horizontal" role="form" id="role" name="role" action="../../user/add"
                               method="post">
-                            <input type="hidden" id="id" name="warehouse.id">
+                            <input type="hidden" id="id" name="user.id">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="name">仓库名称</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">用户姓名</label>
                                 <div class="col-sm-3">
                                     <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="仓库名称" id="name" name="warehouse.name"/>
+                                           placeholder="用户姓名" id="userAlias" name="user.userAlias"/>
+                                </div>
+
+                                <label class="col-sm-1 control-label no-padding-right" for="userName">账户名</label>
+                                <div class="col-sm-3">
+                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
+                                           placeholder="账户名" id="userName" name="user.userName"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="address">仓库地址</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="roleId">角色</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" id="roleId" name="user.roleId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="tel">电话</label>
                                 <div class="col-sm-3">
                                     <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="仓库地址" id="address" name="warehouse.address"/>
+                                           placeholder="电话" id="tel" name="user.tel"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="desc">描述</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="address">地址</label>
                                 <div class="col-sm-3">
                                     <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="描述" id="desc" name="warehouse.desc"/>
+                                           placeholder="地址" id="address" name="user.address"/>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="remark">备注</label>
+                                <div class="col-sm-3">
+                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
+                                           placeholder="备注" id="remark" name="user.remark"/>
                                 </div>
                             </div>
                         </form>
@@ -196,6 +214,18 @@
                 }
             })
         }
+
+        $.get("../../role/list",{},function (data) {
+            if (data.resultJson.result == 'SUCCESS') {
+                var json =  data.resultJson.content;
+                $.each(json, function (i, item) {
+                    jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
+                });
+            }
+
+
+        })
+
     });
 </script>
 </body>

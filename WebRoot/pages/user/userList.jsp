@@ -68,30 +68,29 @@
                     <div class="col-xs-12">
                         <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="name">
-                                    仓库名称
-                                </label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" placeholder="仓库名" id="name"
-                                           name="name"/>
-
+                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">用户姓名</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" placeholder="用户姓名" id="userAlias" name="user.userAlias"/>
                                 </div>
-                                <div class="col-sm-5 col-lg-8 col-md-5 align-right">
+                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">登录名</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" placeholder="登录名" id="userName" name="user.userName"/>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="roleId">用户角色</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" placeholder="用户角色" id="roleId" name="user.roleId"/>
+                                </div>
+                                <div class="col-sm-1 col-lg-1 col-md-1 align-right">
                                     <div class="space-4 hidden-lg hidden-md hidden-sm"></div>
-                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch"
-                                            onclick="initTable()">
-                                        <i class="ace-icon fa fa-search"></i>
-                                        搜索
+                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch" onclick="initTable()">
+                                        <i class="ace-icon fa fa-search"></i>搜索
                                     </button>
                                 </div>
-
                             </div>
-
-
                             <hr class="no-margin">
                             <div class="page-toolbar align-right list-toolbar">
                                 <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd"
-                                        data-ths-href="addWarehouse.jsp">
+                                        data-ths-href="addUser.jsp">
                                     <i class="ace-icon fa fa-plus"></i>
                                     添加
                                 </button>
@@ -111,9 +110,12 @@
                                                         <span class="lbl"></span>
                                                     </label>
                                                 </th>
-                                                <th class="align-center">仓库名称</th>
-                                                <th class="align-center">地址</th>
-                                                <th class="align-center">描述</th>
+                                                <th class="align-center">姓名</th>
+                                                <th class="align-center">账户名</th>
+                                                <th class="align-center">角色</th>
+                                                <th class="align-center">电话</th>
+                                                <th class="align-center">住址</th>
+                                                <th class="align-center">备注</th>
                                                 <th class="align-center">创建人</th>
                                                 <th class="align-center">创建时间</th>
                                                 <th class="align-center hidden-xs"><i class="ace-icon fa fa-wrench"></i>
@@ -159,7 +161,7 @@
 <script src="../../assets/js/src/ace.js"></script>
 
 <!-- 自己写的JS，请放在这里 -->
-<script src="../../js/warehouse.js"></script>
+<script src="../../js/user.js"></script>
 <script type="text/javascript">
     initTable();
     jQuery(function ($) {

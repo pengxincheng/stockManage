@@ -1,6 +1,7 @@
 package com.business.user.po;
 
 import com.business.role.po.Role;
+import com.business.user.enums.UserType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class User {
     private String updateUserId;     //修改人
     private Date updateTime;        //修改时间
     private Role role;
+    private UserType userType;    //用户类型
 
     @Id
     @Column(name = "user_id")
@@ -155,5 +157,15 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }
