@@ -17,11 +17,14 @@ public class Product {
     private String productId;
     private String productName;     //商品名称
     private String productType;      //类别
+    private String isDelete;       //是否删除  T删除  F未删除
+    private String remark;
 
     private String createUserId;    //创建人
     private Date createTime;       //创建时间
     private String updateUserId;     //修改人
     private Date updateTime;        //修改时间
+    private ProductType type;
 
     @Id
     @Column(name = "product_id")
@@ -87,5 +90,34 @@ public class Product {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Column(name = "is_delete")
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @Column(name = "remark")
+    public String getRemark() {
+        return remark;
+    }
+
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_type", nullable = false, insertable = false, updatable = false)
+    public ProductType getType() {
+        return type;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
     }
 }

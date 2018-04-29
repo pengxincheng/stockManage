@@ -148,7 +148,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li class="">
                         <a href="pages/productType/productTypeList.jsp" target="main">
                             <i class="menu-icon fa fa-area-chart"></i>
-                            商品类别
+                            商品类别管理
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="pages/product/productList.jsp" target="main">
+                            <i class="menu-icon fa fa-area-chart"></i>
+                            商品管理
                         </a>
                         <b class="arrow"></b>
                     </li>
