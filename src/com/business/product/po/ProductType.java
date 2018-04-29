@@ -15,6 +15,8 @@ public class ProductType {
 
     private String typeId;
     private String typeName;
+    private String isDelete;       //是否删除  T删除  F未删除
+    private String remark;
 
     private String createUserId;    //创建人
     private Date createTime;       //创建时间
@@ -78,4 +80,21 @@ public class ProductType {
         this.updateTime = updateTime;
     }
 
+    @Column(name = "is_delete")
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @Column(name = "remark")
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 }
