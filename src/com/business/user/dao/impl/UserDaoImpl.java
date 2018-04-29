@@ -1,6 +1,7 @@
 package com.business.user.dao.impl;
 
 import com.business.user.dao.UserDao;
+import com.business.user.enums.UserType;
 import com.business.user.po.User;
 import com.sysBasic.dao.impl.BasicDaoImpl;
 import com.order.cc.sys.dao.FoHQLQuery;
@@ -18,7 +19,11 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
     @Override
     public List<User> getAllUser(User user) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = "from User u left join fetch u.role r where 1=1 and u.isDelete = 'F' ";
+        String hql = "from User u ";
+        if(UserType.employee == user.getUserType()){
+            hql+=" left join fetch u.role r ";
+        }
+         hql+=" where 1=1 ";
         hql += this.getConditions(query, user);
         query.setHQL(hql);
         return execFoQuery(query);
@@ -41,6 +46,14 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
         if (StringUtils.isNotBlank(user.getUserName())) {
             conditions += " and u.userName = :userName ";
             query.setString("userName", user.getUserName());
+        }
+        if (StringUtils.isNotBlank(user.getIsDelete())) {
+            conditions += " and u.isDelete = :isDelete ";
+            query.setString("isDelete", user.getIsDelete());
+        }
+        if (null != user.getUserType()) {
+            conditions += " and u.userType = :useType ";
+            query.setString("useType", user.getUserType().name());
         }
         return conditions;
     }

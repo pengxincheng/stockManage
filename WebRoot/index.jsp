@@ -131,17 +131,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <b class="arrow"></b>
                     </li>
 					 <li class="">
-                        <a href="goToChangeRoomList.do" target="main">
+                        <a href="pages/supplier/supplierList.jsp" target="main">
                             <i class="menu-icon fa fa-area-chart"></i>
-                            调换宿舍
+                            供应商管理
                         </a>
                         <b class="arrow"></b>
                     </li>	
                     
                     <li class="">
-                        <a href="goToCensusPage.do" target="main">
+                        <a href="pages/customer/customerList.jsp" target="main">
                             <i class="menu-icon fa fa-area-chart"></i>
-                            卫生统计
+                            客户管理
                         </a>
                         <b class="arrow"></b>
                     </li>				

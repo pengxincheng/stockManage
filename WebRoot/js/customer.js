@@ -6,8 +6,7 @@ function initTable() {
         data: {
             "user.userName": $("#userName").val(),
             "user.userAlias": $("#userAlias").val(),
-            "user.roleId": $("#roleId").val(),
-            "user.userType":"employee"
+            "user.userType":"customer"
         },
         traditional: true,
         type: "post",
@@ -48,10 +47,6 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "role.roleName",
-                                "class": "align-center"
-                            },
-                            {
                                 "data": "tel",
                                 "class": "align-center"
                             },
@@ -86,12 +81,12 @@ function initTable() {
                             },
                             {
                                 // 定义操作列,######以下是重点########
-                                "targets": 9,// 操作按钮目标列
+                                "targets": 8,// 操作按钮目标列
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {
                                     var id = row.userId;
-                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addUser.jsp?userId="
+                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addCustomer.jsp?userId="
                                         + id
                                         + "'><i class='ace-icon fa fa-edit'></i></a>";
                                     html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths' title='删除' name='" + id + "' onclick='delArea(this)'><i class='ace-icon fa fa-trash-o'></i></button>"
@@ -135,7 +130,7 @@ function delArea(obj) {
         $.post("../../user/delete", {"id": id}, function (data) {
             if (data.resultJson.result = 'SUCCESS') {
                 alert("操作成功！");
-                location.href = "userList.jsp";
+                location.href = "customerList.jsp";
             }
         })
     }else {

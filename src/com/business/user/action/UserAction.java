@@ -1,5 +1,6 @@
 package com.business.user.action;
 
+import com.business.user.enums.UserType;
 import com.business.user.po.User;
 import com.business.user.service.UserService;
 import com.sysBasic.action.BasicAction;
@@ -28,6 +29,10 @@ public class UserAction extends BasicAction {
     @Autowired
     private UserService userService;
 
+    /**
+     * 员工列表
+     * @return
+     */
     @Action(value = "list", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String getAllUser() {
         try {
@@ -61,11 +66,14 @@ public class UserAction extends BasicAction {
         return SUCCESS;
     }
 
-
+    /**
+     * 添加员工
+     * @return
+     */
     @Action(value = "add", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String addUser() {
         try {
-            if (StringUtils.isNotBlank(user.getUserId())) {
+            if (StringUtils.isNotEmpty(user.getUserId())) {
                 userService.updateUser(user);
             } else {
                 userService.saveUser(user);
