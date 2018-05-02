@@ -24,6 +24,10 @@ public class Item {
     private Date outTime;          // 出库时间
     private String outUserId;       //出库负责人
     private String remark;          //备注
+    private String itemStatus;      //是否在库
+    private String typeId;       // 商品类别
+    private String customerId;    //客户id
+    private String warehouseId;  //仓库id
 
     @Id
     @Column(name = "item_id")
@@ -125,5 +129,41 @@ public class Item {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Column(name = "item_status")
+    public String getItemStatus() {
+        return itemStatus;
+    }
+
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
+    }
+
+    @Column(name="type_id")
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    @Column(name = "customer_id")
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    @Column(name="warehouse_id")
+    public String getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(String warehouseId) {
+        this.warehouseId = warehouseId;
     }
 }

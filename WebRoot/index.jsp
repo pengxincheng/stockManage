@@ -164,15 +164,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
-                    <span class="menu-text">宿舍管理员</span>
+                    <span class="menu-text">入库管理</span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
 					<li class="">
-                        <a href="goToStuListForManager.do" target="main">
+                        <a href="pages/item/inItemList.jsp" target="main">
                             <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		学生列表
+                           		商品详情表
                         </a>
                         <b class="arrow"></b>
                     </li>  

@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by pxc on 2018/4/25.
@@ -18,11 +19,9 @@ public class StockLog {
     private String stockId;
     private String productId;
     private String wareHouseId;
-    private Integer inCount;
-    private Integer outCount;
-    private String isWaring;
+    private Integer totalCount;
     private String userId;
-    private String createTime;
+    private Date createTime;
     private String type;      //类型：in:入库   out出库
     private BigDecimal totalMoney;   //交易总额
     private String remark;
@@ -67,30 +66,13 @@ public class StockLog {
         this.wareHouseId = wareHouseId;
     }
 
-    @Column(name = "in_count")
-    public Integer getInCount() {
-        return inCount;
+    @Column(name = "total_count")
+    public Integer getTotalCount() {
+        return totalCount;
     }
 
-    public void setInCount(Integer inCount) {
-        this.inCount = inCount;
-    }
-
-    @Column(name = "out_count")
-    public Integer getOutCount() {
-        return outCount;
-    }
-
-    public void setOutCount(Integer outCount) {
-        this.outCount = outCount;
-    }
-    @Column(name = "is_waring")
-    public String getIsWaring() {
-        return isWaring;
-    }
-
-    public void setIsWaring(String isWaring) {
-        this.isWaring = isWaring;
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
     }
 
     @Column(name = "user_id")
@@ -103,11 +85,11 @@ public class StockLog {
     }
 
     @Column(name = "create_time")
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

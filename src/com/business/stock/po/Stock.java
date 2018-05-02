@@ -4,6 +4,7 @@ package com.business.stock.po;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * Created by pxc on 2018/4/25.
@@ -16,8 +17,9 @@ public class Stock {
     private String id;
     private String productId;
     private String wareHouseId;
-    private Integer inCount;
-    private Integer outCount;
+    private Integer inCount;   //总入库量
+    private Integer outCount;  //总出库量
+    private Integer count;     //库存量
     private String isWaring;
 
     @Id
@@ -75,5 +77,14 @@ public class Stock {
 
     public void setIsWaring(String isWaring) {
         this.isWaring = isWaring;
+    }
+
+    @Column(name = "count")
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }
