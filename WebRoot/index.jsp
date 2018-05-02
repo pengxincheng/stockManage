@@ -194,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="">
-                        <a href="pages/stock/stockLogList.jsp?type=out" target="main">
+                        <a href="pages/stock/outStockLogList.jsp?type=out" target="main">
                             <i class="menu-icon fa fa-arrow-circle-right"></i>
                             出库单
                         </a>

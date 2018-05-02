@@ -1,6 +1,8 @@
 package com.business.stock.po;
 
 
+import com.business.product.po.Product;
+import com.business.warehouse.po.Warehouse;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,6 +23,8 @@ public class Stock {
     private Integer outCount = 0;  //总出库量
     private Integer count = 0;     //库存量
     private String isWaring;
+    private Warehouse warehouse;
+    private Product product;
 
     @Id
     @Column(name = "stock_id")
@@ -86,5 +90,25 @@ public class Stock {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warehouse_id", nullable = false, insertable = false, updatable = false)
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false, insertable = false, updatable = false)
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

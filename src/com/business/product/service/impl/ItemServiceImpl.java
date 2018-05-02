@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
         }
         //库存记录入库
         StockLog stockLog = new StockLog();
-        stockLog.setType("in");
+        stockLog.setLogType("入库");
         stockLog.setTotalCount(inCount);
         stockLog.setCreateTime(new Date());
         stockLog.setProductId(item.getProductId());
@@ -101,7 +101,7 @@ public class ItemServiceImpl implements ItemService {
         }
         //库存记录入库
         StockLog stockLog = new StockLog();
-        stockLog.setType("out");
+        stockLog.setLogType("出库");
         stockLog.setTotalCount(outCount);
         stockLog.setCreateTime(new Date());
         stockLog.setProductId(item.getProductId());

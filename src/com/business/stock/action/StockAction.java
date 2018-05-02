@@ -33,7 +33,7 @@ public class StockAction extends BasicAction {
                 stock = new Stock();
             }
             List<Stock> stocks = stockService.getAll(stock);
-            response = Response.ok(JSONUtils.toJSON(stocks));
+            response = Response.ok(JSONUtils.toJSON(stocks,"createUser","pCreateUser","type"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

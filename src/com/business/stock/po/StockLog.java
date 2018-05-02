@@ -1,5 +1,8 @@
 package com.business.stock.po;
 
+import com.business.product.po.Product;
+import com.business.user.po.User;
+import com.business.warehouse.po.Warehouse;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,10 +25,13 @@ public class StockLog {
     private Integer totalCount;
     private String userId;
     private Date createTime;
-    private String type;      //类型：in:入库   out出库
+    private String logType;      //类型：入库/出库
     private BigDecimal totalMoney;   //交易总额
     private String remark;
     private BigDecimal profit;     //每单盈利
+    private Warehouse warehouse;
+    private Product product;
+    private User user;
 
 
     @Id
@@ -95,12 +101,12 @@ public class StockLog {
     }
 
     @Column(name = "type")
-    public String getType() {
-        return type;
+    public String getLogType() {
+        return logType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLogType(String logType) {
+        this.logType = logType;
     }
 
     @Column(name = "total_money")
@@ -128,5 +134,35 @@ public class StockLog {
 
     public void setProfit(BigDecimal profit) {
         this.profit = profit;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warehouse_id", nullable = false, insertable = false, updatable = false)
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false, insertable = false, updatable = false)
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -12,7 +12,7 @@ function initTable() {
 
         data: {
             "stockLog.stockId":id,
-            "stockLog.type":type
+            "stockLog.logType":type
         },
         traditional: true,
         type: "post",
@@ -34,9 +34,8 @@ function initTable() {
                         dom: "t<'ths-page'fl><'ths-pager'p>",
                         columns: [
                             {
-
                                 "sClass": "align-center",
-                                "data": "itemId",
+                                "data": "id",
                                 "render": function (data, type, full, meta) {
                                     return '<label class="pos-rel"><input type="checkbox" class="ace" class="ace"  value="'
                                         + data
@@ -45,15 +44,15 @@ function initTable() {
 
                             },
                             {
-                                "data": "productId",
+                                "data": "product.productName",
                                 "class": "align-center"
                             },
                             {
-                                "data": "wareHouseId",
+                                "data": "warehouse.name",
                                 "class": "align-center"
                             },
                             {
-                                "data": "type",
+                                "data": "logType",
                                 "class": "align-center"
                             },
                             {
@@ -69,10 +68,9 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "userId",
+                                "data": "user.userAlias",
                                 "class": "align-center"
                             },
-
                             {
                                 "data": null,
                                 "class": "hidden-xs align-center col-op-ths"

@@ -1,13 +1,18 @@
 function initTable() {
 
+    var id,type;
+    if (getUrlParam("stockLog.stockId")) {
+        id = getUrlParam("stockLog.stockId");
+    }
+    if (getUrlParam("type")) {
+        type = getUrlParam("type");
+    }
     $.ajax({
-        url: '../../stock/list',// 跳转到 action
+        url: '../../stockLog/list',// 跳转到 action
 
         data: {
-            "user.userName": $("#userName").val(),
-            "user.userAlias": $("#userAlias").val(),
-            "user.roleId": $("#roleId").val(),
-            "user.userType": "employee"
+            "stockLog.stockId":id,
+            "stockLog.logType":type
         },
         traditional: true,
         type: "post",
@@ -29,7 +34,6 @@ function initTable() {
                         dom: "t<'ths-page'fl><'ths-pager'p>",
                         columns: [
                             {
-
                                 "sClass": "align-center",
                                 "data": "id",
                                 "render": function (data, type, full, meta) {
@@ -48,19 +52,27 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "inCount",
+                                "data": "logType",
                                 "class": "align-center"
                             },
                             {
-                                "data": "outCount",
+                                "data": "totalCount",
                                 "class": "align-center"
                             },
                             {
-                                "data": "count",
+                                "data": "totalMoney",
                                 "class": "align-center"
                             },
                             {
-                                "data": "isWaring",
+                                "data": "createTime",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "user.userAlias",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "profit",
                                 "class": "align-center"
                             },
 
@@ -79,33 +91,15 @@ function initTable() {
                             },
                             {
                                 // 定义操作列,######以下是重点########
-                                "targets": 7,// 操作按钮目标列
+                                "targets": 9,// 操作按钮目标列
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {
-                                    var id = row.id;
-                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='库存日志' href='stockLogList.jsp?stockLog.stockId="
+                                    var id = row.itemId;
+                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addUser.jsp?userId="
                                         + id
-                                        + "'><i class='ace-icon fa fa-search'></i></a>";
-                                    return html;
-                                }
-                            },
-
-                            {
-                                "targets": 6,// 操作按钮目标列
-                                "data": null,
-                                "render": function (data,
-                                                    type, row) {
-                                    var isWaring = row.isWaring;
-                                    var html = '';
-                                    if(isWaring == 'T'){
-                                        html = "  <span class='label label-sm label-warning arrowed-in-right min-width-75'>"+
-                                            " <i class= 'ace-icon fa fa-exclamation-circle' ></i> 预警 </span > ";
-                                    }else{
-                                        html = "  <span class='label label-sm label-success arrowed-in-right min-width-75'>"+
-                                            " <i class= 'ace-icon fa fa-check-circle' ></i> 正常 </span > ";
-                                    }
-
+                                        + "'><i class='ace-icon fa fa-edit'></i></a>";
+                                    html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths' title='删除' name='" + id + "' onclick='delArea(this)'><i class='ace-icon fa fa-trash-o'></i></button>"
                                     return html;
                                 }
                             }],

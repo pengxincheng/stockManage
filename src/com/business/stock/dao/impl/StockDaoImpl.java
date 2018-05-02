@@ -23,7 +23,8 @@ public class StockDaoImpl extends BasicDaoImpl<Stock> implements StockDao{
     @Override
     public List<Stock> getAll(Stock stock) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = " from Stock s where 1=1 ";
+        String hql = " from Stock s left join fetch s.warehouse w " +
+                "left join fetch s.product p where 1=1 ";
         hql += this.getConditions(query,stock);
         query.setHQL(hql);
         return execFoQuery(query);

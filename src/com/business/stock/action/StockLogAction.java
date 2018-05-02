@@ -35,8 +35,14 @@ public class StockLogAction extends BasicAction {
             if (null == stockLog) {
                 stockLog = new StockLog();
             }
+            if("in".equals(stockLog.getLogType())){
+                stockLog.setLogType("入库");
+            }
+            if("out".equals(stockLog.getLogType())){
+                stockLog.setLogType("出库");
+            }
            List<StockLog> stockLogs  = stockLogService.getAll(stockLog);
-            response = Response.ok(JSONUtils.toJSON(stockLogs));
+            response = Response.ok(JSONUtils.toJSON(stockLogs,"createUser","pCreateUser","role","type"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

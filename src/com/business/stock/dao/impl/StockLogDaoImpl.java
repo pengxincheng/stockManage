@@ -19,7 +19,10 @@ public class StockLogDaoImpl extends BasicDaoImpl<StockLog> implements StockLogD
     @Override
     public List<StockLog> getAll(StockLog stockLog) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = " from StockLog sl where 1=1 ";
+        String hql = " from StockLog sl " +
+                " left join fetch sl.product p" +
+                " left join fetch sl.warehouse w " +
+                " left join fetch sl.user u where 1=1 ";
         hql += this.getConditions(query, stockLog);
 
         hql += " order by sl.createTime desc ";
@@ -33,9 +36,9 @@ public class StockLogDaoImpl extends BasicDaoImpl<StockLog> implements StockLogD
             conditions += " and sl.stockId =:stockId ";
             query.setString("stockId", stockLog.getStockId());
         }
-        if (StringUtils.isNotEmpty(stockLog.getType())) {
-            conditions += " and sl.type =:type ";
-            query.setString("type", stockLog.getType());
+        if (StringUtils.isNotEmpty(stockLog.getLogType())) {
+            conditions += " and sl.logType =:type ";
+            query.setString("type", stockLog.getLogType());
         }
         return conditions;
     }
