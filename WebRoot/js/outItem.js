@@ -40,15 +40,15 @@ function initTable() {
 
                             },
                             {
-                                "data": "productId",
+                                "data": "product.productName",
                                 "class": "align-center"
                             },
                             {
-                                "data": "typeId",
+                                "data": "product.type.typeName",
                                 "class": "align-center"
                             },
                             {
-                                "data": "supplierId",
+                                "data": "supplier.userAlias",
                                 "class": "align-center"
                             },
                             {
@@ -56,7 +56,7 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "warehouseId",
+                                "data": "warehouse.name",
                                 "class": "align-center"
                             },
                             {
@@ -64,7 +64,7 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "inUserId",
+                                "data": "inUser.userAlias",
                                 "class": "align-center"
                             },
                             {
@@ -72,12 +72,24 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "remark",
+                                "data": "outTime",
                                 "class": "align-center"
                             },
                             {
-                                "data": null,
-                                "class": "hidden-xs align-center col-op-ths"
+                                "data": "outUserId",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "outPrice",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "itemStatus",
+                                "class": "align-center"
+                            },
+                            {
+                                "data": "remark",
+                                "class": "align-center"
                             }],
                         columnDefs: [// 设置列的属性，此处设置第一列不排序
                             {
@@ -87,20 +99,6 @@ function initTable() {
                             {
                                 "class": "tn",
                                 "targets": [0]
-                            },
-                            {
-                                // 定义操作列,######以下是重点########
-                                "targets": 10,// 操作按钮目标列
-                                "data": null,
-                                "render": function (data,
-                                                    type, row) {
-                                    var id = row.itemId;
-                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addUser.jsp?userId="
-                                        + id
-                                        + "'><i class='ace-icon fa fa-edit'></i></a>";
-                                    html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths' title='删除' name='" + id + "' onclick='delArea(this)'><i class='ace-icon fa fa-trash-o'></i></button>"
-                                    return html;
-                                }
                             }],
 
                         /*

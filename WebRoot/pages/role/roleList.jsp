@@ -115,7 +115,6 @@
                                             <tr>
                                                 <th class="align-center">角色名称</th>
                                                 <th class="align-center">角色编号</th>
-                                                <th class="align-center">创建人</th>
                                                 <th class="align-center">创建时间</th>
                                             </tr>
                                             </thead>

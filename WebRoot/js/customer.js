@@ -59,10 +59,6 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "createUserId",
-                                "class": "align-center"
-                            },
-                            {
                                 "data": "createTime",
                                 "class": "align-center"
                             },
@@ -81,7 +77,7 @@ function initTable() {
                             },
                             {
                                 // 定义操作列,######以下是重点########
-                                "targets": 8,// 操作按钮目标列
+                                "targets": 7,// 操作按钮目标列
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {

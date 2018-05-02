@@ -3,9 +3,12 @@ package com.business.product.action;
 import com.business.product.exception.ItemException;
 import com.business.product.po.Item;
 import com.business.product.service.ItemService;
+import com.business.user.po.User;
+import com.business.user.service.UserService;
 import com.sysBasic.action.BasicAction;
 import com.utils.JSONUtils;
 import com.utils.Response;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -27,6 +30,8 @@ public class ItemAction extends BasicAction {
 
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private UserService userService;
 
     @Action(value = "inList", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
     public String getAllUser() {
@@ -36,7 +41,18 @@ public class ItemAction extends BasicAction {
             }
             item.setItemStatus("inStock");
             List<Item> items = itemService.getAll(item);
-            response = Response.ok(JSONUtils.toJSON(items));
+            items.forEach(item1 -> {
+                if(StringUtils.isNotBlank(item1.getCustomerId())){
+                    item1.setCustomerId(userService.getById(item1.getCustomerId()).getUserAlias());
+                }
+                if(StringUtils.isNotBlank(item1.getOutUserId())){
+                    item1.setOutUserId(userService.getById(item1.getOutUserId()).getUserAlias());
+                }
+            });
+            response = Response.ok(JSONUtils.toJSONInclude(items,"itemId","productId","inPrice",
+                    "outPrice","supplierId","productTime","inTime","inUserId","outTime","outUserId","remark",
+                    "itemStatus","typeId","customerId","warehouseId","product","productName","type","typeName","warehouse","name",
+                    "supplier","userAlias","inUser"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

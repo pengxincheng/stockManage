@@ -1,5 +1,7 @@
 package com.business.product.po;
 
+import com.business.user.po.User;
+import com.business.warehouse.po.Warehouse;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -28,6 +30,11 @@ public class Item {
     private String typeId;       // 商品类别
     private String customerId;    //客户id
     private String warehouseId;  //仓库id
+    private Product product;
+    private User supplier;
+    private User inUser;
+    private Warehouse warehouse;
+
 
     @Id
     @Column(name = "item_id")
@@ -140,7 +147,7 @@ public class Item {
         this.itemStatus = itemStatus;
     }
 
-    @Column(name="type_id")
+    @Column(name = "type_id")
     public String getTypeId() {
         return typeId;
     }
@@ -158,12 +165,53 @@ public class Item {
         this.customerId = customerId;
     }
 
-    @Column(name="warehouse_id")
+    @Column(name = "warehouse_id")
     public String getWarehouseId() {
         return warehouseId;
     }
 
     public void setWarehouseId(String warehouseId) {
         this.warehouseId = warehouseId;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false, insertable = false, updatable = false)
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", nullable = false, insertable = false, updatable = false)
+    public User getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(User supplier) {
+        this.supplier = supplier;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "in_user_id", nullable = false, insertable = false, updatable = false)
+    public User getInUser() {
+        return inUser;
+    }
+
+    public void setInUser(User inUser) {
+        this.inUser = inUser;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warehouse_id", nullable = false, insertable = false, updatable = false)
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }

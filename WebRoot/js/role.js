@@ -35,10 +35,6 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "createUserId",
-                                "class": "align-center"
-                            },
-                            {
                                 "data": "createTime",
                                 "class": "align-center"
                             }],

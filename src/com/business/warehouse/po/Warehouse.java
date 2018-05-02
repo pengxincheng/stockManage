@@ -1,5 +1,6 @@
 package com.business.warehouse.po;
 
+import com.business.user.po.User;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Warehouse {
     private Date createTime;       //创建时间
     private String updateUserId;     //修改人
     private Date updateTime;        //修改时间
+    private User createUser;
 
     @Id
     @Column(name = "id")
@@ -96,4 +98,13 @@ public class Warehouse {
         this.updateTime = updateTime;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "create_user_id", nullable = false, insertable = false, updatable = false)
+    public User getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(User createUser) {
+        this.createUser = createUser;
+    }
 }

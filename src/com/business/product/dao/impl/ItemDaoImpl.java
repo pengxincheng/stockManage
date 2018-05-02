@@ -18,7 +18,11 @@ public class ItemDaoImpl extends BasicDaoImpl<Item> implements ItemDao {
     @Override
     public List<Item> getAll(Item item) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = " from Item i where 1=1 ";
+        String hql = " from Item i left join fetch i.product " +
+                "left join fetch i.product.type " +
+                "left join fetch i.warehouse " +
+                "left join fetch i.supplier " +
+                "left join fetch i.inUser where 1=1 ";
         hql += this.getCondition(query, item);
         query.setHQL(hql);
         return this.execFoQuery(query);

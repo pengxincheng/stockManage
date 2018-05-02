@@ -116,7 +116,6 @@
                                                 <th class="align-center">电话</th>
                                                 <th class="align-center">住址</th>
                                                 <th class="align-center">备注</th>
-                                                <th class="align-center">创建人</th>
                                                 <th class="align-center">创建时间</th>
                                                 <th class="align-center hidden-xs"><i class="ace-icon fa fa-wrench"></i>
                                                     操作

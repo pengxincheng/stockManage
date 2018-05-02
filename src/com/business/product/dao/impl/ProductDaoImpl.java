@@ -18,7 +18,7 @@ public class ProductDaoImpl extends BasicDaoImpl<Product> implements ProductDao 
     @Override
     public List<Product> getAll(Product product) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = " from Product p left join fetch p.type where 1=1 ";
+        String hql = " from Product p left join fetch p.type left join fetch p.pCreateUser where 1=1 ";
 
         if (StringUtils.isNotEmpty(product.getProductName())) {
             hql += " and p.productName like :productName ";

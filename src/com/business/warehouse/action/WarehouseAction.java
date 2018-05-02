@@ -38,7 +38,7 @@ public class WarehouseAction extends BasicAction {
                 warehouse = new Warehouse();
             }
             List<Warehouse> warehouses = warehouseService.getAllWarehouse(warehouse);
-            response = Response.ok(JSONUtils.toJSON(warehouses));
+            response = Response.ok(JSONUtils.toJSON(warehouses,"role"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

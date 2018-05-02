@@ -1,5 +1,6 @@
 package com.business.product.po;
 
+import com.business.user.po.User;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -119,5 +120,16 @@ public class Product {
 
     public void setType(ProductType type) {
         this.type = type;
+    }
+
+    private User pCreateUser;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "create_user_id", nullable = false, insertable = false, updatable = false)
+    public User getpCreateUser() {
+        return pCreateUser;
+    }
+
+    public void setpCreateUser(User pCreateUser) {
+        this.pCreateUser = pCreateUser;
     }
 }

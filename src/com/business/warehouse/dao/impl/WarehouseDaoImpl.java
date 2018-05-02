@@ -17,7 +17,7 @@ public class WarehouseDaoImpl extends BasicDaoImpl<Warehouse> implements Warehou
     @Override
     public List<Warehouse> getAllWarehouse(Warehouse warehouse) {
         FoHQLQuery query = new FoHQLQuery();
-        String hql = " from Warehouse w where 1=1 ";
+        String hql = " from Warehouse w left join fetch w.createUser where 1=1 ";
 
         if(StringUtils.isNotBlank(warehouse.getName())){
             hql+= " and w.name like :name ";

@@ -49,7 +49,7 @@ function initTable() {
                                 "class": "align-center"
                             },
                             {
-                                "data": "createUserId",
+                                "data": "createUser.userAlias",
                                 "class": "align-center"
                             },
                             {

@@ -37,7 +37,7 @@ public class ProductTypeAction extends BasicAction {
             }
             productType.setIsDelete("F");
             List<ProductType> productTypes = productTypeService.getAll(productType);
-            response = Response.ok(JSONUtils.toJSON(productTypes));
+            response = Response.ok(JSONUtils.toJSON(productTypes,"role"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

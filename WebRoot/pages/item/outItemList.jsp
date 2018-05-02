@@ -118,10 +118,11 @@
                                                 <th class="align-center">入库时间</th>
                                                 <th class="align-center">入库负责人</th>
                                                 <th class="align-center">进价</th>
+                                                <th class="align-center">出库时间</th>
+                                                <th class="align-center">出库负责人</th>
+                                                <th class="align-center">售价</th>
+                                                <th class="align-center">状态</th>
                                                 <th class="align-center">备注</th>
-                                                <th class="align-center hidden-xs"><i class="ace-icon fa fa-wrench"></i>
-                                                    操作
-                                                </th>
                                             </tr>
                                             </thead>
                                         </table>

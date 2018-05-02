@@ -95,6 +95,7 @@ public class ItemServiceImpl implements ItemService {
             item1.setOutPrice(item.getOutPrice());
             item1.setOutTime(new Date());
             item1.setOutUserId(currentUser.getUserId());
+            item1.setCustomerId(item.getCustomerId());
             totalInPrice = totalInPrice.add(item1.getInPrice());
             itemDao.updateEntity(item1);
         }
