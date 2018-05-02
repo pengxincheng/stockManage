@@ -17,9 +17,9 @@ public class Stock {
     private String id;
     private String productId;
     private String wareHouseId;
-    private Integer inCount;   //总入库量
-    private Integer outCount;  //总出库量
-    private Integer count;     //库存量
+    private Integer inCount = 0;   //总入库量
+    private Integer outCount = 0;  //总出库量
+    private Integer count = 0;     //库存量
     private String isWaring;
 
     @Id

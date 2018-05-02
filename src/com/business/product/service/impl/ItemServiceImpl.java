@@ -1,6 +1,7 @@
 package com.business.product.service.impl;
 
 import com.business.product.dao.ItemDao;
+import com.business.product.exception.ItemException;
 import com.business.product.po.Item;
 import com.business.product.service.ItemService;
 import com.business.stock.dao.StockDao;
@@ -40,9 +41,8 @@ public class ItemServiceImpl implements ItemService {
         Stock stock = stockDao.getByPIdFromWarehouse(item.getProductId(), item.getWarehouseId());
         if (null == stock) {
             stock = new Stock();
-            stock.setInCount(inCount);
-            stock.setOutCount(0);
-            stock.setCount(inCount);
+            stock.setInCount(stock.getInCount() + inCount);
+            stock.setCount(stock.getCount() + inCount);
             stock.setProductId(item.getProductId());
             stockService.isWaring(stock);//是否告警
             stock.setWareHouseId(item.getWarehouseId());
@@ -67,14 +67,50 @@ public class ItemServiceImpl implements ItemService {
         //商品详情入库
         item.setInTime(new Date());
         item.setInUserId(currentUser.getUserId());
+        item.setItemStatus("在库");
         for (int i = 0; i < inCount; i++) {
             itemDao.saveEntity(item);
         }
     }
 
     @Override
-    public void outStock(Item item) {
-
+    public void outStock(Item item, Integer outCount) {
+        User currentUser = (User) ServletActionContext.getRequest().getSession().getAttribute("currentUser");
+        Stock stock = stockDao.getByPIdFromWarehouse(item.getProductId(), item.getWarehouseId());
+        if (null == stock) {
+            throw new ItemException("所选仓库不存在该商品！");
+        }
+        if (stock.getCount() < outCount) {
+            throw new ItemException("库存商品数量小于出库数量！");
+        }
+        stock.setOutCount(stock.getOutCount() + outCount);
+        stock.setCount(stock.getCount() - outCount);
+        stockDao.updateEntity(stock);
+        //商品详情修改
+        BigDecimal totalInPrice = new BigDecimal("0");
+        List<Item> itemList = itemDao.getInStockItem(item.getProductId(), item.getWarehouseId());
+        for (int i = 0; i < outCount; i++) {
+            Item item1 = itemList.get(i);
+            item1.setItemStatus("已出库");
+            item1.setOutPrice(item.getOutPrice());
+            item1.setOutTime(new Date());
+            item1.setOutUserId(currentUser.getUserId());
+            totalInPrice = totalInPrice.add(item1.getInPrice());
+            itemDao.updateEntity(item1);
+        }
+        //库存记录入库
+        StockLog stockLog = new StockLog();
+        stockLog.setType("out");
+        stockLog.setTotalCount(outCount);
+        stockLog.setCreateTime(new Date());
+        stockLog.setProductId(item.getProductId());
+        stockLog.setTotalMoney(item.getOutPrice().multiply(new BigDecimal(outCount)));
+        stockLog.setRemark("商品出库");
+        stockLog.setUserId(currentUser.getUserId());
+        stockLog.setStockId(stock.getId());
+        stockLog.setWareHouseId(stock.getWareHouseId());
+        stockLog.setProfit(stockLog.getTotalMoney().subtract(totalInPrice));
+        stockLogDao.saveEntity(stockLog);
     }
 
     @Override

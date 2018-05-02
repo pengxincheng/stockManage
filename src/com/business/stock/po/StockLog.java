@@ -25,6 +25,7 @@ public class StockLog {
     private String type;      //类型：in:入库   out出库
     private BigDecimal totalMoney;   //交易总额
     private String remark;
+    private BigDecimal profit;     //每单盈利
 
 
     @Id
@@ -118,5 +119,14 @@ public class StockLog {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Column(name = "profit")
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
     }
 }

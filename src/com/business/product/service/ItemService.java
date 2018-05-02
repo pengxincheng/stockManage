@@ -19,7 +19,7 @@ public interface ItemService {
      * 出库
      * @param item
      */
-    void outStock(Item item);
+    void outStock(Item item,Integer outCount);
 
     Item getById(String id);
 

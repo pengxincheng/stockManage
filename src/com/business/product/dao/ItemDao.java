@@ -11,5 +11,7 @@ import java.util.List;
 public interface ItemDao extends BasicDao<Item>{
 
     List<Item> getAll(Item item);
+
+    List<Item> getInStockItem(String productId,String warehouseId);
 }
 

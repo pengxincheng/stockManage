@@ -1,5 +1,6 @@
 package com.business.product.action;
 
+import com.business.product.exception.ItemException;
 import com.business.product.po.Item;
 import com.business.product.service.ItemService;
 import com.sysBasic.action.BasicAction;
@@ -54,6 +55,23 @@ public class ItemAction extends BasicAction {
             response = Response.ok();
         } catch (Exception e) {
             response = Response.error();
+            logger.error(e.getMessage(), e);
+        }
+        return SUCCESS;
+    }
+
+    /**
+     * 出库
+     * @return
+     */
+    @Action(value = "out", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    public String itemOut() {
+        try {
+            itemService.outStock(item,totalCount);
+            response = Response.ok();
+        } catch (ItemException e) {
+            response = Response.error(e.getMessage());
+        }catch (Exception e){
             logger.error(e.getMessage(), e);
         }
         return SUCCESS;

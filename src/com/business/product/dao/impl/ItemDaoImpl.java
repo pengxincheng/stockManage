@@ -24,6 +24,12 @@ public class ItemDaoImpl extends BasicDaoImpl<Item> implements ItemDao {
         return this.execFoQuery(query);
     }
 
+    @Override
+    public List<Item> getInStockItem(String productId, String warehouseId) {
+        String hql = " from Item i where i.productId = ? and warehouseId=? and itemStatus = '在库' order by i.inTime desc ";
+        return this.find(hql,productId,warehouseId);
+    }
+
     private String getCondition(FoHQLQuery query, Item item) {
         String conditions = "";
         if (StringUtils.isNotEmpty(item.getInUserId())) {

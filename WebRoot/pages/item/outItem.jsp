@@ -57,7 +57,7 @@
         <div class="main-content-inner fixed-page-header fixed-82">
             <div id="breadcrumbs" class="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li class="active"><i class="fa fa-arrow-right"></i>新增仓库</li>
+                    <li class="active"><i class="fa fa-arrow-right"></i>商品出库</li>
                 </ul><!-- /.breadcrumb -->
 
             </div>
@@ -67,47 +67,51 @@
                 <div class="space-4"></div>
                 <div class="row">
                     <div class=" col-xs-12">
-                        <form class="form-horizontal" role="form" id="role" name="role" action="../../user/add"
-                              method="post">
-                            <input type="hidden" id="userId" name="user.userId">
-                            <input type="hidden" id="userType" name="user.userType" value="employee">
+                        <form class="form-horizontal" role="form" id="role" name="role">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">用户姓名</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="typeId">商品类别</label>
                                 <div class="col-sm-3">
-                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="用户姓名" id="userAlias" name="user.userAlias"/>
-                                </div>
-
-                                <label class="col-sm-1 control-label no-padding-right" for="userName">账户名</label>
-                                <div class="col-sm-3">
-                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="账户名" id="userName" name="user.userName"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="roleId">角色</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control" id="roleId" name="user.roleId"
+                                    <select class="form-control" id="typeId" name="item.typeId"
                                             data-validation-engine="validate[required]">
                                         <option value="" selected="selected">-请选择-</option>
                                     </select>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="tel">电话</label>
+
+                                <label class="col-sm-1 control-label no-padding-right" for="productId">商品</label>
                                 <div class="col-sm-3">
-                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="电话" id="tel" name="user.tel"/>
+                                    <select class="form-control" id="productId" name="item.productId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="address">地址</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="customerId">客户</label>
                                 <div class="col-sm-3">
-                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="地址" id="address" name="user.address"/>
+                                    <select class="form-control" id="customerId" name="item.customerId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="remark">备注</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="warehouseId">仓库</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" id="warehouseId" name="item.warehouseId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="outPrice">单价</label>
                                 <div class="col-sm-3">
                                     <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="备注" id="remark" name="user.remark"/>
+                                           placeholder="单价" id="outPrice" name="item.outPrice"/>
+                                </div>
+
+                                <label class="col-sm-1 control-label no-padding-right" for="totalCount">数量</label>
+                                <div class="col-sm-3">
+                                    <input type="text" data-validation-engine="validate[required]" class="form-control"
+                                           placeholder="单价" id="totalCount" name="totalCount"/>
                                 </div>
                             </div>
                         </form>
@@ -162,13 +166,13 @@
 <script src="../../assets/js/ace-elements.js"></script>
 <script src="../../js/utils/form_util.js"></script>
 
-
 <!-- 自己写的JS，请放在这里 -->
+<script src="../../js/outItem.js"></script>
 <script type="text/javascript">
     jQuery(function ($) {
         //日期控件使用示例，详细文档请参考http://www.my97.net/dp/demo/index.htm
         $("#divBirthday").on(ace.click_event, function () {
-            WdatePicker({el: 'buildTime'});
+            WdatePicker({el: 'productTime'});
         });
 
         //wysiwyg编辑器初始化
@@ -193,12 +197,12 @@
             //console.log($('#addNotify').validationEngine('validate'));
             if ($('#role').validationEngine('validate')) {
                 var params = $('#role').serialize();
-                $.post("../../user/add", params, function (data) {
+                $.post("../../item/out", params, function (data) {
                     if (data.resultJson.result == 'SUCCESS') {
                         alert("操作成功！");
-                        location.href = 'userList.jsp'
+                        location.href = 'inItemList.jsp'
                     } else {
-                        alert("操作失败!");
+                        alert(data.resultJson.resultMessage);
                     }
                 });
             }
@@ -206,43 +210,11 @@
         $("#btnReturn").on(ace.click_event, function () {
             window.history.go(-1);
         });
-
-        if (getUrlParam("userId")) {
-            var id = getUrlParam("userId");
-            $.get("../../role/list",{},function (data) {
-                if (data.resultJson.result == 'SUCCESS') {
-                    var json =  data.resultJson.content;
-                    $.each(json, function (i, item) {
-                        jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
-                    });
-                }
-
-                $.get("../../user/getById", {id: id}, function (data) {
-                    var json = data.resultJson.content;
-                    if (json) {
-                        Object.keys(json).map(function (key) {
-                            $.each(document.getElementById("role"), function () {
-                                if (key == $(this).attr("id")) {
-                                    $(this).val(json[key]);
-                                }
-                            });
-                        });
-                    }
-                })
-
-            })
-
-        }else{
-            $.get("../../role/list",{},function (data) {
-                if (data.resultJson.result == 'SUCCESS') {
-                    var json =  data.resultJson.content;
-                    $.each(json, function (i, item) {
-                        jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
-                    });
-                }
-
-            })
-        }
+        //类型
+        getType();
+        //供应商
+        getBussinessUser("customer");
+        getWarehouse();
     });
 </script>
 </body>

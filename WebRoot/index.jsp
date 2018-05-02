@@ -188,6 +188,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
+                    <span class="menu-text">出库管理</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="">
+                        <a href="pages/stock/stockLogList.jsp?type=out" target="main">
+                            <i class="menu-icon fa fa-arrow-circle-right"></i>
+                            出库单
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="pages/item/outItemList.jsp" target="main">
+                            <i class="menu-icon fa fa-arrow-circle-right"></i>
+                            商品详情表
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="active open">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-reorder"></i>
                     <span class="menu-text">库存信息</span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
