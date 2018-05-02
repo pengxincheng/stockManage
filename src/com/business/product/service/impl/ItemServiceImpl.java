@@ -62,6 +62,7 @@ public class ItemServiceImpl implements ItemService {
         stockLog.setRemark("商品入库");
         stockLog.setUserId(currentUser.getUserId());
         stockLog.setStockId(stock.getId());
+        stockLog.setWareHouseId(stock.getWareHouseId());
         stockLogDao.saveEntity(stockLog);
         //商品详情入库
         item.setInTime(new Date());

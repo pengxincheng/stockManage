@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--浏览器兼容性设置-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>学生宿舍管理系统</title>
+    <title>库存管理系统</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
@@ -136,8 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             供应商管理
                         </a>
                         <b class="arrow"></b>
-                    </li>	
-                    
+                    </li>
+
                     <li class="">
                         <a href="pages/customer/customerList.jsp" target="main">
                             <i class="menu-icon fa fa-area-chart"></i>
@@ -169,117 +169,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
+                    <li class="">
+                        <a href="pages/stock/stockLogList.jsp?type=in" target="main">
+                            <i class="menu-icon fa fa-arrow-circle-right"></i>
+                            入库单
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
 					<li class="">
                         <a href="pages/item/inItemList.jsp" target="main">
                             <i class="menu-icon fa fa-arrow-circle-right"></i>
                            		商品详情表
-                        </a>
-                        <b class="arrow"></b>
-                    </li>  
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-th"></i>
-                            <span class="menu-text">登记管理</span>
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-                        <b class="arrow"></b>
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="goToVisitEnregisterList.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                    	来访登记
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="goToRegisterList.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                   		 晚归登记
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="goToRegisterListFroQueQin.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                   		 缺勤登记
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-th"></i>
-                            <span class="menu-text">宿舍管理</span>
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-                        <b class="arrow"></b>
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="goToListPageForManager.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                    	宿舍列表
-                                </a>
-                                <b class="arrow"></b>
-                            </li> 
-                            <li class="">
-                                <a href="goToCheckHygieneList.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                   		 卫生检查
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="goToChangeRoomListForManager.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                   		 调换宿舍
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-th"></i>
-                            <span class="menu-text">通知公告</span>
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-                        <b class="arrow"></b>
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="findAllNotifies.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                    	通知公告
-                                </a>
-                                <b class="arrow"></b>
-                            </li>                           
-                            <li class="">
-                                <a href="findAllNotifiesForUser.do" target="main">
-                                    <i class="menu-icon fa fa-list"></i>
-                                   		 通知公告列表
-                                </a>
-                                <b class="arrow"></b>
-                            </li>                                                       
-                        </ul>
-                    </li>
-                     <li class="">
-                        <a href="goToRepairTasksListForManager.do" target="main">
-                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		维修处理
-                        </a>
-                        <b class="arrow"></b>
-                    </li>   
-                    <li class="">
-                        <a href="goToStuApplyGoodsListForManager.do" target="main">
-                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		物品发放
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                     <li class="">
-                        <a href="goToCensusPageForManager.do" target="main">
-                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		卫生统计
                         </a>
                         <b class="arrow"></b>
                     </li>
@@ -288,71 +188,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
-                    <span class="menu-text">管理员</span>
+                    <span class="menu-text">库存信息</span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="">
-                        <a href="goToListPage.do" target="main">
+                        <a href="pages/stock/stockList.jsp" target="main">
                             <i class="menu-icon fa fa-arrow-circle-right"></i>
-                            	宿舍区管理
+                            	库存列表
                         </a>
                         <b class="arrow"></b>
                     </li>
+
                     <li class="">
-                        <a href="goToBuildingList.do" target="main">
+                        <a href="pages/stock/stockLogList.jsp" target="main">
                             <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		楼宇管理
+                            库存日志
                         </a>
                         <b class="arrow"></b>
-                    </li>                 
-                     <li class="">
-                        <a href="goToRoomList.do" target="main">
-                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		宿舍管理
-                        </a>
-                        <b class="arrow"></b>
-                    </li>   
-                    <li class="">
-                        <a href="goToStuList.do" target="main">
-                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		学生管理
-                        </a>
-                        <b class="arrow"></b>
-                    </li>  
-                    <li class="">
-                        <a href="goToManagerList.do" target="main">
-                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-                           		宿舍管理员列表
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-th"></i>
-                            <span class="menu-text">统计信息</span>
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-                        <b class="arrow"></b>
-                        <ul class="submenu">
-                          <li class="">
-	                        <a href="goToCensusPageForAdmin.do" target="main">
-	                            <i class="menu-icon fa fa-arrow-circle-right"></i>
-	                           		卫生统计
-	                        </a>
-                        	<b class="arrow"></b>
-                    		</li> 
-                           
-                            <li class="">
-                                <a href="goToCensusRegister.do" target="main">
-                                    <i class="menu-icon fa fa-arrow-circle-right"></i>
-                                   		考勤统计
-                                </a>
-                                <b class="arrow"></b>
-                            </li>                                                       
-                        </ul>
                     </li>
                 </ul>
             </li>
@@ -394,21 +248,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<label class="col-sm-2 control-label no-padding-right" for="oldPwd">原密码</label>
                     <div class="col-sm-5">
                         <input type="password" data-validation-engine="validate[required]" class="form-control" placeholder="原密码" id="oldPwd" name="oldPwd"/>
-                    </div>  
+                    </div>
                  </div>
                  <div class="row"><br></div>
                  <div class="row">
 					<label class="col-sm-2 control-label no-padding-right" for="newPwd">新密码</label>
                     <div class="col-sm-5">
                         <input type="password" data-validation-engine="validate[required]" class="form-control" placeholder="新密码" id="newPwd" name="newPwd"/>
-                    </div>  
+                    </div>
                  </div>
                   <div class="row"><br></div>
                  <div class="row">
 					<label class="col-sm-2 control-label no-padding-right" for="newPwd1">确认密码</label>
                     <div class="col-sm-5">
                         <input type="password" data-validation-engine="validate[required]" class="form-control" placeholder="确认密码" id="newPwd1" name="newPwd1"/>
-                    </div>  
+                    </div>
                  </div>
 			</div>
 			</form>
@@ -489,7 +343,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          },3000);
          */
     });
-    
+
 function changePassword(){
 	$('#myModal').modal();
 }
@@ -507,7 +361,7 @@ $("#submitChange").click(function(){
 		return;
 	}
 	 $.ajax({
-		url : 'changePassword.do',// 跳转到 action  
+		url : 'changePassword.do',// 跳转到 action
 		data : {
 			"oldPwd" :oldPwd,
 			"newPwd" : newPwd
@@ -526,10 +380,10 @@ $("#submitChange").click(function(){
 			}
 		},
 		error : function() {
-			// view("异常！");  
+			// view("异常！");
 			alert("异常！");
 		}
-	}); 
+	});
 });
 
 </script>

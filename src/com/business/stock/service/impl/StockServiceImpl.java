@@ -34,6 +34,6 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public List<Stock> getAll(Stock stock) {
-        return null;
+        return stockDao.getAll(stock);
     }
 }

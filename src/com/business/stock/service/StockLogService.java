@@ -1,15 +1,13 @@
-package com.business.stock.dao;
+package com.business.stock.service;
 
 import com.business.stock.po.StockLog;
-import com.sysBasic.dao.BasicDao;
 
 import java.util.List;
 
 /**
- * Created by pxc on 2018/4/30.
+ * Created by pxc on 2018/5/2.
  */
-public interface StockLogDao extends BasicDao<StockLog> {
-
+public interface StockLogService {
     /**
      * 列表
      * @param stockLog
