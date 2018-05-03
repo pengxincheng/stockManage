@@ -160,6 +160,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#txtUserName").on("focus",function(e){
             $("#dError").hide();
         });
+
+        if (window != top)
+            top.location.href = location.href;
     });
 
 </script>

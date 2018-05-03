@@ -66,6 +66,12 @@ public class UserAction extends BasicAction {
         return SUCCESS;
     }
 
+    @Action(value = "logout", results = {@Result(name = "success", type = "redirect",location = "/login.jsp")})
+    public String logout() {
+        ServletActionContext.getRequest().getSession().setAttribute("currentUser", null);
+        return SUCCESS;
+    }
+
     /**
      * 添加员工
      * @return

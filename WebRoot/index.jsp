@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- <li><i class="ace-icon fa fa-file-o grey bigger-100" title="待办事项"></i><span class="badge badge-warning">99</span></li>
                 <li><i class="ace-icon fa fa-bullhorn grey bigger-110" title="通知"></i><span class="badge badge-success">2</span></li> -->
                 <li><i class="ace-icon fa fa-user grey bigger-110" title="修改密码" onclick="changePassword()"></i></li>
-                <li><a class="ace-icon fa fa-power-off grey bigger-110" title="注销" href="logout.do"></a></li>
+                <li><a class="ace-icon fa fa-power-off grey bigger-110" title="注销" href="user/logout"></a></li>
             </ul>
         </div>
     </div>
