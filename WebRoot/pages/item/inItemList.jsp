@@ -68,33 +68,63 @@
                     <div class="col-xs-12">
                         <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">用户姓名</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="typeId">商品类别</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="用户姓名" id="userAlias" name="user.userAlias"/>
+                                    <select class="form-control" id="typeId" name="item.typeId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">登录名</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="productId">商品</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="登录名" id="userName" name="user.userName"/>
+                                    <select class="form-control" id="productId" name="item.productId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="roleId">用户角色</label>
+
+                                <label class="col-sm-1 control-label no-padding-right" for="supplierId">供应商</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="用户角色" id="roleId" name="user.roleId"/>
+                                    <select class="form-control" id="supplierId" name="item.supplierId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="warehouseId">仓库</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="warehouseId" name="item.warehouseId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
+                                </div>
+
+                                <label class="col-sm-1 control-label no-padding-right" for="itemStatus">状态</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="itemStatus" name="item.itemStatus"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                        <option value="在库">在库</option>
+                                        <option value="已出库">已出库</option>
+                                    </select>
                                 </div>
                                 <div class="col-sm-1 col-lg-1 col-md-1 align-right">
                                     <div class="space-4 hidden-lg hidden-md hidden-sm"></div>
-                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch" onclick="initTable()">
+                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch"
+                                            onclick="initTable()">
                                         <i class="ace-icon fa fa-search"></i>搜索
                                     </button>
                                 </div>
                             </div>
                             <hr class="no-margin">
-                            <div class="page-toolbar align-right list-toolbar">
-                                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd"
-                                        data-ths-href="inItem.jsp">
-                                    <i class="ace-icon fa fa-plus"></i>
-                                    商品入库
-                                </button>
-                            </div>
+                            <%-- <div class="page-toolbar align-right list-toolbar">
+                                 <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd"
+                                         data-ths-href="inItem.jsp">
+                                     <i class="ace-icon fa fa-plus"></i>
+                                     商品入库
+                                 </button>
+                             </div>--%>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <!-- div.table-responsive -->
@@ -165,6 +195,11 @@
 <!-- 自己写的JS，请放在这里 -->
 <script src="../../js/inItem.js"></script>
 <script type="text/javascript">
+    //类型
+    getType();
+    //供应商
+    getBussinessUser("supplier");
+    getWarehouse();
     initTable();
     jQuery(function ($) {
         //为工具条添加点击事件

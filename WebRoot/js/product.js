@@ -4,7 +4,8 @@ function initTable() {
         url: '../../product/list',// 跳转到 action
 
         data: {
-            "product.name": $("#name").val()
+            "product.productName": $("#name").val(),
+            "product.productType": $("#type").val()
         },
         traditional: true,
         type: "post",

@@ -72,13 +72,16 @@
                                 <div class="col-sm-2">
                                     <input type="text" class="form-control" placeholder="用户姓名" id="userAlias" name="user.userAlias"/>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">登录名</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="userName">帐户名</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="登录名" id="userName" name="user.userName"/>
+                                    <input type="text" class="form-control" placeholder="帐户名" id="userName" name="user.userName"/>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="roleId">用户角色</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="roleId">角色</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="用户角色" id="roleId" name="user.roleId"/>
+                                    <select class="form-control" id="roleId" name="user.roleId"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
                                 </div>
                                 <div class="col-sm-1 col-lg-1 col-md-1 align-right">
                                     <div class="space-4 hidden-lg hidden-md hidden-sm"></div>
@@ -164,6 +167,17 @@
 <script type="text/javascript">
     initTable();
     jQuery(function ($) {
+
+        $.get("../../role/list",{},function (data) {
+            if (data.resultJson.result == 'SUCCESS') {
+                var json =  data.resultJson.content;
+                $.each(json, function (i, item) {
+                    jQuery("#roleId").append("<option value="+ item.roleId+">"+ item.roleName+"</option>");
+                });
+            }
+
+        })
+
         //为工具条添加点击事件
         $(".page-toolbar>button").on(ace.click_event, function (e) {
             if ($(this).data("ths-href")) {

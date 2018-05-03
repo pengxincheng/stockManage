@@ -19,9 +19,9 @@ public class WarehouseDaoImpl extends BasicDaoImpl<Warehouse> implements Warehou
         FoHQLQuery query = new FoHQLQuery();
         String hql = " from Warehouse w left join fetch w.createUser where 1=1 ";
 
-        if(StringUtils.isNotBlank(warehouse.getName())){
-            hql+= " and w.name like :name ";
-            query.setString("name",warehouse.getName());
+        if (StringUtils.isNotBlank(warehouse.getName())) {
+            hql += " and w.name like :name ";
+            query.setString("name", "%" + warehouse.getName() + "%");
         }
         query.setHQL(hql);
         return execFoQuery(query);

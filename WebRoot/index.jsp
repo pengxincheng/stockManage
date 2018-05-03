@@ -201,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="pages/item/outItemList.jsp" target="main">
+                        <a href="pages/item/inItemList.jsp" target="main">
                             <i class="menu-icon fa fa-arrow-circle-right"></i>
                             商品详情表
                         </a>

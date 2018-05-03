@@ -99,6 +99,10 @@ function initTable() {
                             {
                                 "class": "tn",
                                 "targets": [0]
+                            },
+                            {
+                                "defaultContent": "",
+                                "targets": "_all"
                             }],
 
                         /*

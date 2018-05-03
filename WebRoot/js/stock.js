@@ -4,10 +4,8 @@ function initTable() {
         url: '../../stock/list',// 跳转到 action
 
         data: {
-            "user.userName": $("#userName").val(),
-            "user.userAlias": $("#userAlias").val(),
-            "user.roleId": $("#roleId").val(),
-            "user.userType": "employee"
+            "stock.productId": $("#productId").val(),
+            "stock.wareHouseId": $("#warehouseId").val(),
         },
         traditional: true,
         type: "post",

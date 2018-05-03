@@ -40,6 +40,18 @@ public class StockLogDaoImpl extends BasicDaoImpl<StockLog> implements StockLogD
             conditions += " and sl.logType =:type ";
             query.setString("type", stockLog.getLogType());
         }
+        if (StringUtils.isNotBlank(stockLog.getProductId())) {
+            conditions += " and sl.productId = :productId ";
+            query.setString("productId", stockLog.getProductId());
+        }
+        if (StringUtils.isNotBlank(stockLog.getWareHouseId())) {
+            conditions += " and sl.wareHouseId = :wareHouseId ";
+            query.setString("wareHouseId", stockLog.getWareHouseId());
+        }
+        if (StringUtils.isNotBlank(stockLog.getUserId())) {
+            conditions += " and sl.userId = :userId ";
+            query.setString("userId", stockLog.getUserId());
+        }
         return conditions;
     }
 }

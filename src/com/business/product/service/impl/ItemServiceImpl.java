@@ -50,6 +50,7 @@ public class ItemServiceImpl implements ItemService {
         } else {
             stock.setInCount(stock.getInCount() + inCount);
             stock.setCount(stock.getCount() + inCount);
+            stockService.isWaring(stock);//是否告警
             stockDao.updateEntity(stock);
         }
         //库存记录入库
@@ -85,6 +86,7 @@ public class ItemServiceImpl implements ItemService {
         }
         stock.setOutCount(stock.getOutCount() + outCount);
         stock.setCount(stock.getCount() - outCount);
+        stockService.isWaring(stock);//是否告警
         stockDao.updateEntity(stock);
         //商品详情修改
         BigDecimal totalInPrice = new BigDecimal("0");

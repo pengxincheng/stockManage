@@ -69,12 +69,17 @@
                         <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
                             <div class="form-group">
                                 <label class="col-sm-1 control-label no-padding-right" for="name">
-                                    类别名称
+                                    商品名称
                                 </label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" placeholder="类别名称" id="name"
-                                           name="name"/>
-
+                                    <input type="text" class="form-control" placeholder="商品名称" id="name" name="name"/>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="type">商品类别</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="type" name="type"
+                                            data-validation-engine="validate[required]">
+                                        <option value="" selected="selected">-请选择-</option>
+                                    </select>
                                 </div>
                                 <div class="col-sm-5 col-lg-8 col-md-5 align-right">
                                     <div class="space-4 hidden-lg hidden-md hidden-sm"></div>
@@ -209,6 +214,15 @@
             if (this.checked) $row.addClass(active_class);
             else $row.removeClass(active_class);
         });
+
+        $.get("../../productType/list",{},function (data) {
+            if (data.resultJson.result == 'SUCCESS') {
+                var json =  data.resultJson.content;
+                $.each(json, function (i, item) {
+                    jQuery("#type").append("<option value="+ item.typeId+">"+ item.typeName+"</option>");
+                });
+            }
+        })
     });
 
 </script>

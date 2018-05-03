@@ -30,7 +30,7 @@ public class ProductAction extends BasicAction {
 
 
     @Action(value = "list", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
-    public String getAllUser() {
+    public String getAll() {
         try {
             if (null == product) {
                 product = new Product();

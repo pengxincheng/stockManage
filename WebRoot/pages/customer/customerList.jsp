@@ -68,17 +68,13 @@
                     <div class="col-xs-12">
                         <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">用户姓名</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">客户名称</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="用户姓名" id="userAlias" name="user.userAlias"/>
+                                    <input type="text" class="form-control" placeholder="客户名称" id="userAlias" name="user.userAlias"/>
                                 </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">登录名</label>
+                                <label class="col-sm-1 control-label no-padding-right" for="userAlias">联系人</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="登录名" id="userName" name="user.userName"/>
-                                </div>
-                                <label class="col-sm-1 control-label no-padding-right" for="roleId">用户角色</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="用户角色" id="roleId" name="user.roleId"/>
+                                    <input type="text" class="form-control" placeholder="联系人" id="userName" name="user.userName"/>
                                 </div>
                                 <div class="col-sm-1 col-lg-1 col-md-1 align-right">
                                     <div class="space-4 hidden-lg hidden-md hidden-sm"></div>
@@ -110,7 +106,7 @@
                                                         <span class="lbl"></span>
                                                     </label>
                                                 </th>
-                                                <th class="align-center">姓名</th>
+                                                <th class="align-center">客户名称</th>
                                                 <th class="align-center">联系人</th>
                                                 <th class="align-center">联系电话</th>
                                                 <th class="align-center">住址</th>

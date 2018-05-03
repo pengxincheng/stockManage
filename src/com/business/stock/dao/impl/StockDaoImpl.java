@@ -4,6 +4,7 @@ import com.business.stock.dao.StockDao;
 import com.business.stock.po.Stock;
 import com.order.cc.sys.dao.FoHQLQuery;
 import com.sysBasic.dao.impl.BasicDaoImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public class StockDaoImpl extends BasicDaoImpl<Stock> implements StockDao{
 
     private String getConditions(FoHQLQuery query,Stock stock){
         String conditions = "";
+        if(StringUtils.isNotBlank(stock.getProductId())){
+            conditions += " and  s.productId = :productId ";
+            query.setString("productId",stock.getProductId());
+        }
+        if(StringUtils.isNotBlank(stock.getWareHouseId())){
+            conditions += " and s.wareHouseId = :warehouseId ";
+            query.setString("warehouseId",stock.getWareHouseId());
+        }
         return conditions;
     }
 }

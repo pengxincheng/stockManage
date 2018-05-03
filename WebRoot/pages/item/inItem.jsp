@@ -219,7 +219,7 @@
                 $.post("../../item/in", params, function (data) {
                     if (data.resultJson.result == 'SUCCESS') {
                         alert("操作成功！");
-                        location.href = 'inItemList.jsp'
+                        location.href = '../stock/stockLogList.jsp?type=in'
                     } else {
                         alert("操作失败!");
                     }

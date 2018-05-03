@@ -22,7 +22,7 @@ public class ProductTypeDaoImpl extends BasicDaoImpl<ProductType> implements Pro
 
         if (StringUtils.isNotEmpty(productType.getTypeName())) {
             hql += " and pt.typeName like :type ";
-            query.setString("tyName", "%" + productType.getTypeName() + "%");
+            query.setString("type", "%" + productType.getTypeName() + "%");
         }
         if (StringUtils.isNotEmpty(productType.getIsDelete())) {
             hql += " and pt.isDelete = :isDelete ";

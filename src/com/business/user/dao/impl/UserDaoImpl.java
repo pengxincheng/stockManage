@@ -20,10 +20,10 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
     public List<User> getAllUser(User user) {
         FoHQLQuery query = new FoHQLQuery();
         String hql = "from User u ";
-        if(UserType.employee == user.getUserType()){
-            hql+=" left join fetch u.role r ";
+        if (UserType.employee == user.getUserType()) {
+            hql += " left join fetch u.role r ";
         }
-         hql+=" where 1=1 ";
+        hql += " where 1=1 ";
         hql += this.getConditions(query, user);
         query.setHQL(hql);
         return execFoQuery(query);
@@ -50,6 +50,10 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
         if (StringUtils.isNotBlank(user.getIsDelete())) {
             conditions += " and u.isDelete = :isDelete ";
             query.setString("isDelete", user.getIsDelete());
+        }
+        if (StringUtils.isNotBlank(user.getUserAlias())) {
+            conditions += " and u.userAlias like :userAlias ";
+            query.setString("userAlias", "%" + user.getUserAlias() + "%");
         }
         if (null != user.getUserType()) {
             conditions += " and u.userType = :useType ";

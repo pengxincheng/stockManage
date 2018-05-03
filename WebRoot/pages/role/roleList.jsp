@@ -95,15 +95,14 @@
 
                             </div>
 
-
                             <hr class="no-margin">
-                            <div class="page-toolbar align-right list-toolbar">
+                            <%--<div class="page-toolbar align-right list-toolbar">
                                 <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd"
                                         data-ths-href="addRole.jsp">
                                     <i class="ace-icon fa fa-plus"></i>
                                     添加
                                 </button>
-                            </div>
+                            </div>--%>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <!-- div.table-responsive -->

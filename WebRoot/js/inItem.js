@@ -4,10 +4,11 @@ function initTable() {
         url: '../../item/inList',// 跳转到 action
 
         data: {
-            "user.userName": $("#userName").val(),
-            "user.userAlias": $("#userAlias").val(),
-            "user.roleId": $("#roleId").val(),
-            "user.userType": "employee"
+            "item.typeId": $("#typeId").val(),
+            "item.productId": $("#productId").val(),
+            "item.supplierId": $("#supplierId").val(),
+            "item.warehouseId": $("#warehouseId").val(),
+            "item.itemStatus": $("#itemStatus").val(),
         },
         traditional: true,
         type: "post",
@@ -99,6 +100,10 @@ function initTable() {
                             {
                                 "class": "tn",
                                 "targets": [0]
+                            },
+                            {
+                                "defaultContent": "",
+                                "targets": "_all"
                             }],
 
                         /*

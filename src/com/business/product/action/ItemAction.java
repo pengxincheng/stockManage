@@ -39,7 +39,6 @@ public class ItemAction extends BasicAction {
             if (null == item) {
                 item = new Item();
             }
-            item.setItemStatus("inStock");
             List<Item> items = itemService.getAll(item);
             items.forEach(item1 -> {
                 if(StringUtils.isNotBlank(item1.getCustomerId())){

@@ -12,7 +12,10 @@ function initTable() {
 
         data: {
             "stockLog.stockId":id,
-            "stockLog.logType":type
+            "stockLog.logType":type,
+            "stockLog.productId":$("#productId").val(),
+            "stockLog.wareHouseId":$("#warehouseId").val(),
+            "stockLog.userId":$("#userId").val()
         },
         traditional: true,
         type: "post",
