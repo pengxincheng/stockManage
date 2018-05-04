@@ -1,6 +1,6 @@
 function initTable() {
 
-    var id,type;
+    var id, type;
     if (getUrlParam("stockLog.stockId")) {
         id = getUrlParam("stockLog.stockId");
     }
@@ -11,11 +11,11 @@ function initTable() {
         url: '../../stockLog/list',// 跳转到 action
 
         data: {
-            "stockLog.stockId":id,
-            "stockLog.logType":type,
-            "stockLog.productId":$("#productId").val(),
-            "stockLog.wareHouseId":$("#warehouseId").val(),
-            "stockLog.userId":$("#userId").val()
+            "stockLog.stockId": id,
+            "stockLog.logType": type,
+            "stockLog.productId": $("#productId").val(),
+            "stockLog.wareHouseId": $("#warehouseId").val(),
+            "stockLog.userId": $("#userId").val()
         },
         traditional: true,
         type: "post",
@@ -150,3 +150,9 @@ function delArea(obj) {
         alert("操作失败！");
     }
 }
+
+//导出
+$("#btnExport").click(function () {
+    var params = $("#form1").serialize();
+    location.href = "../../stockLog/exportOutStock?"+params;
+});

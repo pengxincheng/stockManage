@@ -145,3 +145,8 @@ function delArea(obj) {
         alert("操作失败！");
     }
 }
+//导出
+$("#btnExport").click(function () {
+    var params = $("#form1").serialize();
+    location.href = "../../stockLog/exportOutStock?"+params;
+});

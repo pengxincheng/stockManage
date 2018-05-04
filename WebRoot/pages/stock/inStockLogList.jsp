@@ -68,24 +68,24 @@
                     <div class="col-xs-12">
                         <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
                             <div class="form-group">
-                                <input type="hidden" id="type" name="stockLog.logType" value="出库">
+                                <input type="hidden" id="type" name="stockLog.logType" value="入库">
                                 <label class="col-sm-1 control-label no-padding-right" for="productId">商品</label>
                                 <div class="col-sm-2">
-                                    <select class="form-control" id="productId" name="stockLog.productId"
+                                    <select class="form-control" id="productId" name="productId"
                                             data-validation-engine="validate[required]">
                                         <option value="" selected="selected">-请选择-</option>
                                     </select>
                                 </div>
                                 <label class="col-sm-1 control-label no-padding-right" for="warehouseId">仓库</label>
                                 <div class="col-sm-2">
-                                    <select class="form-control" id="warehouseId" name="stockLog.warehouseId"
+                                    <select class="form-control" id="warehouseId" name="warehouseId"
                                             data-validation-engine="validate[required]">
                                         <option value="" selected="selected">-请选择-</option>
                                     </select>
                                 </div>
                                 <label class="col-sm-1 control-label no-padding-right" for="userId">负责人</label>
                                 <div class="col-sm-2">
-                                    <select class="form-control" id="userId" name="stockLog.userId"
+                                    <select class="form-control" id="userId" name="userId"
                                             data-validation-engine="validate[required]">
                                         <option value="" selected="selected">-请选择-</option>
                                     </select>
@@ -99,14 +99,14 @@
                             </div>
                             <hr class="no-margin">
                             <div class="page-toolbar align-right list-toolbar">
-                                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd" data-ths-href="../item/outItem.jsp">
-                                    <i class="ace-icon fa fa-plus"></i>出库
+                                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnAdd"
+                                        data-ths-href="../item/inItem.jsp">
+                                    <i class="ace-icon fa fa-plus"></i>商品入库
                                 </button>
                                 <button type="button" class="btn btn-xs btn-purple btn-xs-ths" id="btnExport">
                                     <i class="ace-icon fa fa-file-excel-o"></i>
                                     导出
                                 </button>
-
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
@@ -130,7 +130,6 @@
                                                 <th class="align-center">总金额</th>
                                                 <th class="align-center">时间</th>
                                                 <th class="align-center">负责人</th>
-                                                <th class="align-center">本单盈利</th>
                                                 <th class="align-center hidden-xs"><i class="ace-icon fa fa-wrench"></i>
                                                     操作
                                                 </th>
@@ -174,7 +173,7 @@
 <script src="../../assets/js/src/ace.js"></script>
 
 <!-- 自己写的JS，请放在这里 -->
-<script src="../../js/outStockLog.js"></script>
+<script src="../../js/stockLog.js"></script>
 <script src="../../js/utils/form_util.js"></script>
 <script type="text/javascript">
     initTable();
@@ -252,6 +251,7 @@
                 });
             }
         })
+
     });
 
 </script>

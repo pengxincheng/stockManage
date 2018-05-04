@@ -32,7 +32,10 @@ public class AuthorityFilter implements Filter {
 		String requestPath = req.getServletPath();
 		if (session.getAttribute("currentUser") == null
 				&& !requestPath.endsWith(loginPage)
-				&& !requestPath.endsWith(login)) {
+				&& !requestPath.endsWith(login)
+				&& !requestPath.contains("assets")
+				&& !requestPath.contains("components")
+				&& !requestPath.contains("js")) {
 			HttpServletResponse resp = (HttpServletResponse) response;
 			resp.sendRedirect("../../login.jsp");
 		} else {

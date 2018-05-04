@@ -1,6 +1,7 @@
 package com.business.stock.service;
 
 import com.business.stock.po.StockLog;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.util.List;
 
@@ -14,4 +15,11 @@ public interface StockLogService {
      * @return
      */
     List<StockLog> getAll(StockLog stockLog);
+
+    /**
+     * 出库单导出
+     * @param stockLog
+     * @return
+     */
+    HSSFWorkbook getOutStockLog(StockLog stockLog);
 }
