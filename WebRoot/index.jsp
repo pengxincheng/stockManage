@@ -108,28 +108,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </a>
                 <ul class="submenu">
                     <li class="active">
-                        <a href="pages/role/roleList.jsp" target="main">
-                            <i class="menu-icon fa fa-laptop"></i>
-                            角色管理
-                            <!-- <span class="badge badge-warning">5</span> -->
+                        <a href="pages/productType/productTypeList.jsp" target="main">
+                            <i class="menu-icon fa fa-area-chart"></i>
+                            商品类别管理
                         </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="pages/warehouse/warehouseList.jsp" target="main">
-                            <i class="menu-icon fa fa-bar-chart"></i>
-                            仓库管理
-                            <!-- <span class="badge badge-success">2</span> -->
+                        <a href="pages/product/productList.jsp" target="main">
+                            <i class="menu-icon fa fa-area-chart"></i>
+                            商品管理
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="">
-                        <a href="pages/user/userList.jsp" target="main">
-                            <i class="menu-icon fa fa-legal"></i>
-                            用户管理
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
+                    <c:if test="${sessionScope.currentUser.role.roleCode eq 'superAdmin'}">
+                        <li class="">
+                            <a href="pages/role/roleList.jsp" target="main">
+                                <i class="menu-icon fa fa-laptop"></i>
+                                角色管理
+                                <!-- <span class="badge badge-warning">5</span> -->
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="pages/user/userList.jsp" target="main">
+                                <i class="menu-icon fa fa-legal"></i>
+                                用户管理
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="pages/warehouse/warehouseList.jsp" target="main">
+                                <i class="menu-icon fa fa-bar-chart"></i>
+                                仓库管理
+                                <!-- <span class="badge badge-success">2</span> -->
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </c:if>
 					 <li class="">
                         <a href="pages/supplier/supplierList.jsp" target="main">
                             <i class="menu-icon fa fa-area-chart"></i>
@@ -145,22 +161,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="">
-                        <a href="pages/productType/productTypeList.jsp" target="main">
-                            <i class="menu-icon fa fa-area-chart"></i>
-                            商品类别管理
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="pages/product/productList.jsp" target="main">
-                            <i class="menu-icon fa fa-area-chart"></i>
-                            商品管理
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
                 </ul>
             </li>
+            <c:if test="${sessionScope.currentUser.role.roleCode eq 'superAdmin' or sessionScope.currentUser.role.roleCode eq 'inEmployee'}">
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
@@ -185,6 +188,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                 </ul>
             </li>
+            </c:if>
+            <c:if test="${sessionScope.currentUser.role.roleCode eq 'superAdmin' or sessionScope.currentUser.role.roleCode eq 'outEmployee'}">
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
@@ -209,6 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                 </ul>
             </li>
+            </c:if>
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-reorder"></i>
@@ -258,7 +264,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="main-content-inner" class="main-content-inner">
             <iframe id="main-content-iframe" name="main" frameBorder="0"
                     style="width:100%;border: none;overflow-x: hidden; overflow-y:auto"
-                    scrolling="auto" src="findAllNotifies.do"></iframe>
+                    scrolling="auto" src="pages/stock/stockCensus.jsp"></iframe>
 
         </div><!--/.main-content-inner-->
     </div><!-- /.main-content -->
@@ -393,7 +399,7 @@ $("#submitChange").click(function(){
 		return;
 	}
 	 $.ajax({
-		url : 'changePassword.do',// 跳转到 action
+		url : 'user/changePassword',// 跳转到 action
 		data : {
 			"oldPwd" :oldPwd,
 			"newPwd" : newPwd
@@ -403,12 +409,12 @@ $("#submitChange").click(function(){
 		async: false,
 		dataType : "json",
 		success : function(data) {
-			if(data.result){
-				alert(data.msg);
+			if(data.resultJson.result == 'SUCCESS'){
+				alert(data.resultJson.resultMessage);
 				window.location.reload();
 			}
 			else{
-				alert(data.msg);
+				alert(data.resultJson.resultMessage);
 			}
 		},
 		error : function() {

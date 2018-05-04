@@ -111,7 +111,7 @@
                                 <label class="col-sm-1 control-label no-padding-right" for="totalCount">数量</label>
                                 <div class="col-sm-3">
                                     <input type="text" data-validation-engine="validate[required]" class="form-control"
-                                           placeholder="单价" id="totalCount" name="totalCount"/>
+                                           placeholder="数量" id="totalCount" name="totalCount"/>
                                 </div>
                             </div>
                         </form>

@@ -5,6 +5,7 @@ import com.business.user.po.User;
 import com.business.user.service.UserService;
 import com.sysBasic.action.BasicAction;
 import com.utils.JSONUtils;
+import com.utils.PasswordUtil;
 import com.utils.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
@@ -15,6 +16,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public class UserAction extends BasicAction {
 
     /**
      * 员工列表
+     *
      * @return
      */
     @Action(value = "list", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
@@ -66,7 +69,7 @@ public class UserAction extends BasicAction {
         return SUCCESS;
     }
 
-    @Action(value = "logout", results = {@Result(name = "success", type = "redirect",location = "/login.jsp")})
+    @Action(value = "logout", results = {@Result(name = "success", type = "redirect", location = "/login.jsp")})
     public String logout() {
         ServletActionContext.getRequest().getSession().setAttribute("currentUser", null);
         return SUCCESS;
@@ -74,6 +77,7 @@ public class UserAction extends BasicAction {
 
     /**
      * 添加员工
+     *
      * @return
      */
     @Action(value = "add", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
@@ -111,7 +115,27 @@ public class UserAction extends BasicAction {
                 response = Response.error();
             }
             User u = userService.getById(id);
-            response = Response.ok(JSONUtils.toJSONInclude(u, "userId", "userCode", "userName", "userAlias", "tel", "address", "remark", "createUserId", "createTime","roleId"));
+            response = Response.ok(JSONUtils.toJSONInclude(u, "userId", "userCode", "userName", "userAlias", "tel", "address", "remark", "createUserId", "createTime", "roleId"));
+        } catch (Exception e) {
+            response = Response.error();
+            logger.error(e.getMessage(), e);
+        }
+        return SUCCESS;
+    }
+
+    @Action(value = "changePassword", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    public String changePassword() {
+        try {
+            User user = (User) ServletActionContext.getRequest().getSession().getAttribute("currentUser");
+            User u = userService.getById(user.getUserId());
+            if (u.getPassword().equals(PasswordUtil.EncoderByMd5(oldPwd))) {
+                u.setPassword(newPwd);
+                userService.updateUser(u);
+                response = Response.ok();
+            } else {
+                response = Response.error("原密码不正确");
+            }
+
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);
@@ -121,6 +145,8 @@ public class UserAction extends BasicAction {
 
     private User user;
     private String id;
+    private String newPwd;
+    private String oldPwd;
 
     public User getUser() {
         return user;
@@ -136,5 +162,21 @@ public class UserAction extends BasicAction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNewPwd() {
+        return newPwd;
+    }
+
+    public void setNewPwd(String newPwd) {
+        this.newPwd = newPwd;
+    }
+
+    public String getOldPwd() {
+        return oldPwd;
+    }
+
+    public void setOldPwd(String oldPwd) {
+        this.oldPwd = oldPwd;
     }
 }

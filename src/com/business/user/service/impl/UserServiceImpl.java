@@ -74,6 +74,9 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isNotBlank(user.getUserName())) {
             entity.setUserName(user.getUserName());
         }
+        if(StringUtils.isNotBlank(user.getPassword())){
+            entity.setPassword(PasswordUtil.EncoderByMd5(user.getPassword()));
+        }
         userDao.updateEntity(entity);
     }
 
