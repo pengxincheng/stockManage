@@ -194,6 +194,7 @@
 
 <!-- 自己写的JS，请放在这里 -->
 <script src="../../js/inItem.js"></script>
+<script src="../../js/utils/form_util.js"></script>
 <script type="text/javascript">
     //类型
     getType();

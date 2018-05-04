@@ -30,6 +30,8 @@ public class Item {
     private String typeId;       // 商品类别
     private String customerId;    //客户id
     private String warehouseId;  //仓库id
+    private String inId;     //入库单id
+    private String outId;     //出库单id
     private Product product;
     private User supplier;
     private User inUser;
@@ -213,5 +215,22 @@ public class Item {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    @Column(name = "in_id")
+    public String getInId() {
+        return inId;
+    }
+
+    public void setInId(String inId) {
+        this.inId = inId;
+    }
+    @Column(name = "out_id")
+    public String getOutId() {
+        return outId;
+    }
+
+    public void setOutId(String outId) {
+        this.outId = outId;
     }
 }

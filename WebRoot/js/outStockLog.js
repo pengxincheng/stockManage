@@ -98,12 +98,11 @@ function initTable() {
                                 "data": null,
                                 "render": function (data,
                                                     type, row) {
-                                    var id = row.itemId;
-                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='编辑' href='addUser.jsp?userId="
+                                    var id = row.id;
+                                    var html = " <a type='button' class='btn btn-sm btn-info btn-white btn-op-ths' title='商品详情' href='../item/inItemList.jsp?outId="
                                         + id
-                                        + "'><i class='ace-icon fa fa-edit'></i></a>";
-                                    html += "<button type='button' class='btn btn-sm btn-danger btn-white btn-op-ths' title='删除' name='" + id + "' onclick='delArea(this)'><i class='ace-icon fa fa-trash-o'></i></button>"
-                                    return html;
+                                        + "'><i class='ace-icon fa fa-search'></i></a>";
+                                  return html;
                                 }
                             }],
 

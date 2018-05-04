@@ -35,8 +35,6 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private StockLogDao stockLogDao;
 
-    private Date date = DateConvertUtils.formatStringToDate("2018-03-01 12:00:00","yyyy-MM-dd HH:mm:ss");
-
     @Override
     public void inStock(Item item, Integer inCount) {
         //1按照商品id和仓库id找库存 记录  有入库数量加inCount  没有 新增
@@ -60,8 +58,7 @@ public class ItemServiceImpl implements ItemService {
         StockLog stockLog = new StockLog();
         stockLog.setLogType("入库");
         stockLog.setTotalCount(inCount);
-      //  stockLog.setCreateTime(new Date());
-        stockLog.setCreateTime(date);
+        stockLog.setCreateTime(new Date());
         stockLog.setProductId(item.getProductId());
         stockLog.setTotalMoney(item.getInPrice().multiply(new BigDecimal(inCount)));
         stockLog.setRemark("商品入库");
@@ -70,10 +67,10 @@ public class ItemServiceImpl implements ItemService {
         stockLog.setWareHouseId(stock.getWareHouseId());
         stockLogDao.saveEntity(stockLog);
         //商品详情入库
-        //item.setInTime(new Date());
-        item.setInTime(date);
+        item.setInTime(new Date());
         item.setInUserId(currentUser.getUserId());
         item.setItemStatus("在库");
+        item.setInId(stockLog.getId());
         for (int i = 0; i < inCount; i++) {
             itemDao.saveEntity(item);
         }
@@ -98,19 +95,14 @@ public class ItemServiceImpl implements ItemService {
         List<Item> itemList = itemDao.getInStockItem(item.getProductId(), item.getWarehouseId());
         for (int i = 0; i < outCount; i++) {
             Item item1 = itemList.get(i);
-            item1.setItemStatus("已出库");
-            item1.setOutPrice(item.getOutPrice());
-            item1.setOutTime(date);
-            item1.setOutUserId(currentUser.getUserId());
-            item1.setCustomerId(item.getCustomerId());
             totalInPrice = totalInPrice.add(item1.getInPrice());
-            itemDao.updateEntity(item1);
         }
+
         //库存记录入库
         StockLog stockLog = new StockLog();
         stockLog.setLogType("出库");
         stockLog.setTotalCount(outCount);
-        stockLog.setCreateTime(date);
+        stockLog.setCreateTime(new Date());
         stockLog.setProductId(item.getProductId());
         stockLog.setTotalMoney(item.getOutPrice().multiply(new BigDecimal(outCount)));
         stockLog.setRemark("商品出库");
@@ -119,6 +111,18 @@ public class ItemServiceImpl implements ItemService {
         stockLog.setWareHouseId(stock.getWareHouseId());
         stockLog.setProfit(stockLog.getTotalMoney().subtract(totalInPrice));
         stockLogDao.saveEntity(stockLog);
+
+        for (int i = 0; i < outCount; i++) {
+            Item item1 = itemList.get(i);
+            item1.setItemStatus("已出库");
+            item1.setOutPrice(item.getOutPrice());
+            item1.setOutTime(new Date());
+            item1.setOutUserId(currentUser.getUserId());
+            item1.setCustomerId(item.getCustomerId());
+            item1.setOutId(stockLog.getId());
+            totalInPrice = totalInPrice.add(item1.getInPrice());
+            itemDao.updateEntity(item1);
+        }
     }
 
     @Override

@@ -65,6 +65,14 @@ public class ItemDaoImpl extends BasicDaoImpl<Item> implements ItemDao {
             conditions += " and i.itemStatus = :itemStatus ";
             query.setString("itemStatus", item.getItemStatus());
         }
+        if (StringUtils.isNotEmpty(item.getInId())) {
+            conditions += " and i.inId = :inId ";
+            query.setString("inId", item.getInId());
+        }
+        if (StringUtils.isNotEmpty(item.getOutId())) {
+            conditions += " and i.outId = :outId ";
+            query.setString("outId", item.getOutId());
+        }
         return conditions;
 
     }

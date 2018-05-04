@@ -1,5 +1,13 @@
 function initTable() {
 
+    var inId,outId;
+    if (getUrlParam("inId")) {
+        inId = getUrlParam("inId");
+    }
+    if (getUrlParam("outId")) {
+        outId = getUrlParam("outId");
+    }
+
     $.ajax({
         url: '../../item/inList',// 跳转到 action
 
@@ -9,6 +17,8 @@ function initTable() {
             "item.supplierId": $("#supplierId").val(),
             "item.warehouseId": $("#warehouseId").val(),
             "item.itemStatus": $("#itemStatus").val(),
+            "item.inId": inId,
+            "item.outId":outId
         },
         traditional: true,
         type: "post",
