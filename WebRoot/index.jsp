@@ -232,6 +232,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </a>
                         <b class="arrow"></b>
                     </li>
+
+                    <li class="">
+                        <a href="pages/stock/stockCensus.jsp" target="main">
+                            <i class="menu-icon fa fa-arrow-circle-right"></i>
+                            统计信息
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
                 </ul>
             </li>
         </ul><!-- /.nav-list -->

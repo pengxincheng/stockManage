@@ -11,6 +11,7 @@ import com.business.stock.po.Stock;
 import com.business.stock.po.StockLog;
 import com.business.stock.service.StockService;
 import com.business.user.po.User;
+import com.utils.DateConvertUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,8 @@ public class ItemServiceImpl implements ItemService {
     private StockService stockService;
     @Autowired
     private StockLogDao stockLogDao;
+
+    private Date date = DateConvertUtils.formatStringToDate("2018-03-01 12:00:00","yyyy-MM-dd HH:mm:ss");
 
     @Override
     public void inStock(Item item, Integer inCount) {
@@ -57,7 +60,8 @@ public class ItemServiceImpl implements ItemService {
         StockLog stockLog = new StockLog();
         stockLog.setLogType("入库");
         stockLog.setTotalCount(inCount);
-        stockLog.setCreateTime(new Date());
+      //  stockLog.setCreateTime(new Date());
+        stockLog.setCreateTime(date);
         stockLog.setProductId(item.getProductId());
         stockLog.setTotalMoney(item.getInPrice().multiply(new BigDecimal(inCount)));
         stockLog.setRemark("商品入库");
@@ -66,7 +70,8 @@ public class ItemServiceImpl implements ItemService {
         stockLog.setWareHouseId(stock.getWareHouseId());
         stockLogDao.saveEntity(stockLog);
         //商品详情入库
-        item.setInTime(new Date());
+        //item.setInTime(new Date());
+        item.setInTime(date);
         item.setInUserId(currentUser.getUserId());
         item.setItemStatus("在库");
         for (int i = 0; i < inCount; i++) {
@@ -95,7 +100,7 @@ public class ItemServiceImpl implements ItemService {
             Item item1 = itemList.get(i);
             item1.setItemStatus("已出库");
             item1.setOutPrice(item.getOutPrice());
-            item1.setOutTime(new Date());
+            item1.setOutTime(date);
             item1.setOutUserId(currentUser.getUserId());
             item1.setCustomerId(item.getCustomerId());
             totalInPrice = totalInPrice.add(item1.getInPrice());
@@ -105,7 +110,7 @@ public class ItemServiceImpl implements ItemService {
         StockLog stockLog = new StockLog();
         stockLog.setLogType("出库");
         stockLog.setTotalCount(outCount);
-        stockLog.setCreateTime(new Date());
+        stockLog.setCreateTime(date);
         stockLog.setProductId(item.getProductId());
         stockLog.setTotalMoney(item.getOutPrice().multiply(new BigDecimal(outCount)));
         stockLog.setRemark("商品出库");

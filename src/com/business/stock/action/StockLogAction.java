@@ -1,5 +1,6 @@
 package com.business.stock.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.business.stock.po.Stock;
 import com.business.stock.po.StockLog;
 import com.business.stock.service.StockLogService;
@@ -77,6 +78,17 @@ public class StockLogAction extends BasicAction {
         return SUCCESS;
     }
 
+    @Action(value = "censusByMonth", results = {@Result(name = "success", type = "json", params = {"root", "response"})})
+    public String census() {
+        try {
+            JSONObject result = stockLogService.getStockCountGroupMonth(stockLog);
+            response = Response.ok(result);
+        } catch (Exception e) {
+            response = Response.error();
+            logger.error(e.getMessage(), e);
+        }
+        return SUCCESS;
+    }
 
     private StockLog stockLog;
 

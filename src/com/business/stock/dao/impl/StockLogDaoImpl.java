@@ -4,11 +4,13 @@ import com.business.stock.dao.StockLogDao;
 import com.business.stock.po.Stock;
 import com.business.stock.po.StockLog;
 import com.order.cc.sys.dao.FoHQLQuery;
+import com.order.cc.sys.dao.FoSQLQuery;
 import com.sysBasic.dao.impl.BasicDaoImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pxc on 2018/4/30.
@@ -27,6 +29,24 @@ public class StockLogDaoImpl extends BasicDaoImpl<StockLog> implements StockLogD
 
         hql += " order by sl.createTime desc ";
         query.setHQL(hql);
+        return execFoQuery(query);
+    }
+
+    @Override
+    public List<Map> getStockCountGroupMonth(StockLog stockLog) {
+        FoSQLQuery query = new FoSQLQuery();
+        String sql = " SELECT " +
+                "date_format(sl.create_time, '%Y-%m') AS myMonth, " +
+                "SUM(sl.total_count) AS totalCount, " +
+                "sl.type AS type, " +
+                "sum(sl.profit) as profit " +
+                "FROM " +
+                "tab_stock_log sl " +
+                "GROUP BY " +
+                "date_format(sl.create_time, '%Y-%m'), " +
+                "sl.type  ";
+        query.setSQL(sql);
+        query.setEntityMap(true);
         return execFoQuery(query);
     }
 

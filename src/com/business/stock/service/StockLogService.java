@@ -1,5 +1,6 @@
 package com.business.stock.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.business.stock.po.StockLog;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
@@ -22,4 +23,6 @@ public interface StockLogService {
      * @return
      */
     HSSFWorkbook getOutStockLog(StockLog stockLog);
+
+    JSONObject getStockCountGroupMonth(StockLog stockLog);
 }

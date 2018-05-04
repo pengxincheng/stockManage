@@ -56,7 +56,6 @@ public class WarehouseAction extends BasicAction {
             } else {
                 warehouseService.saveWarehouse(warehouse);
             }
-
             response = Response.ok();
         } catch (Exception e) {
             response = Response.error();
@@ -72,7 +71,7 @@ public class WarehouseAction extends BasicAction {
                 response = Response.error();
             }
             Warehouse warehouse = warehouseService.getById(id);
-            response = Response.ok(JSONUtils.toJSON(warehouse));
+            response = Response.ok(JSONUtils.toJSON(warehouse,"createUser"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);

@@ -200,7 +200,7 @@
                 $.post("../../item/out", params, function (data) {
                     if (data.resultJson.result == 'SUCCESS') {
                         alert("操作成功！");
-                        location.href = "../stock/outStockLogList.jsp?logType=out"
+                        location.href = "../stock/outStockLogList.jsp?type=out"
                     } else {
                         alert(data.resultJson.resultMessage);
                     }

@@ -49,7 +49,7 @@ public class ProductTypeAction extends BasicAction {
     public String getById() {
         try {
             ProductType entity = productTypeService.getById(id);
-            response = Response.ok(JSONUtils.toJSON(entity));
+            response = Response.ok(JSONUtils.toJSON(entity,"createUser"));
         } catch (Exception e) {
             response = Response.error();
             logger.error(e.getMessage(), e);
